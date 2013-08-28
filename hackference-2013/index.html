@@ -404,6 +404,8 @@ Developer Evangelist
 
 ## PubSub Example
 
+#### Client
+
     var pusher = new Pusher( APP_KEY );
 
     var channel = pusher.subscribe( CHANNEL_NAME );
@@ -411,6 +413,15 @@ Developer Evangelist
     channel.bind( EVENT_NAME, function( data ) ) {
     	// Handle Update
     } );
+
+#### Server
+
+		data = {
+			:from_number => some_number,
+			:timestamp => Time.now.strftime("%Y-%m-%dT%H:%M:%S"),
+			:text => message
+		}
+		Pusher.trigger(CHANNEL_NAME, EVENT_NAME, data)
 
 [pushtel.herokuapp.com](http://pushtel.herokuapp.com)
 
@@ -433,11 +444,11 @@ Developer Evangelist
 <script type="text/template">
 ## Data Sync Example
 
-## [j.mp/brumpad](http://j.mp/brumpad)
+## [j.mp/brumsync](http://j.mp/brumsync)
 
 ([local](/examples/firepad))
 
-<a href="https://twitter.com/share?text=%23hackbrum2013%20Realtime%20Web%20App%20demo 2:%20http%3A//www.leggetter.co.uk/pres/r/examples/firepad/" class="twitter-share-button" data-lang="en">Tweet</a>
+<a href="https://twitter.com/share?text=%23hackbrum2013%20Realtime%20Web%20App%20demo 2:%20http%3A//j.mp/brumsync" class="twitter-share-button" data-lang="en">Tweet</a>
 
 See [firepad.io](http://firepad.io)
 
@@ -491,6 +502,12 @@ See [firepad.io](http://firepad.io)
 <!--Using Now-->
 <section>
 
+<section data-markdown>
+<script type="text/template">
+# Using Realtime Web Tech Now
+</script>
+</section>
+
 <section data-markdown data-background="../img/sql.png" >
 <script type="text/template">
 # You already have Realtime Data in your Apps!
@@ -537,6 +554,32 @@ See [firepad.io](http://firepad.io)
 # Realtime Web
 
 ## Security
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+# It's still just a Web App
+
+* Verify & Sanitise User Input
+* Don't simply proxy on data
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+# Intelligent Client App Code required
+
+* Sending data
+* **Receiving data**
+
+#### Example
+
+http://j.mp/brumsync
+
+		setInterval( function() {
+			codeMirror.setValue('Fish!');
+		}, 5000 );
 </script>
 </section>
 
