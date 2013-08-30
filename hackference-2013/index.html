@@ -97,6 +97,10 @@
 				min-height: 768px;
 				min-width: 1024px;
 			}
+
+			code {
+				text-transform: none !important;
+			}
 		</style>
 
 		<!--[if lt IE 9]>
@@ -232,7 +236,7 @@ Developer Evangelist
 
 <section data-markdown data-background="../img/mancity-match-day-centre.png" class="trans">
 <script type="text/template">
-### Live Content
+### Live Content, Activity Streams
 #### [Man City Match Day Centre](http://mcfcgeeks.co.uk/2013/08/19/a-new-season-a-new-match-day-centre/)
 </script>
 
@@ -420,7 +424,13 @@ Yeah, Games! But, also...
 <script type="text/template">
 # Data
 
-### 3 "Client <-> Server" paradigms
+### 4 "Client <-> Server" paradigms
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## `onMessage( data )`
 </script>
 </section>
 
@@ -447,6 +457,10 @@ Yeah, Games! But, also...
 
 ## PubSub Example
 
+[pushtel.herokuapp.com](http://pushtel.herokuapp.com)
+
+<a href="https://twitter.com/share?text=%23hackbrum2013%20Realtime%20Web%20App%20demo:%20http%3A//pushtel.herokuapp.com" class="twitter-share-button" data-lang="en">Tweet</a>
+
 #### Client
 
     var pusher = new Pusher( APP_KEY );
@@ -466,9 +480,6 @@ Yeah, Games! But, also...
 		}
 		Pusher.trigger(CHANNEL_NAME, EVENT_NAME, data)
 
-[pushtel.herokuapp.com](http://pushtel.herokuapp.com)
-
-<a href="https://twitter.com/share?text=%23hackbrum2013%20Realtime%20Web%20App%20demo:%20http%3A//pushtel.herokuapp.com" class="twitter-share-button" data-lang="en">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.ge tElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 </script>
@@ -637,7 +648,7 @@ http://j.mp/brumsync
 <script type="text/template">
 ## Why use an existing solution?
 
-* Fallback hacks still required
+* Fallback/upgrade hacks still required
 * Help from the community
 * Maintenance
 * Future features
@@ -730,7 +741,7 @@ http://j.mp/brumsync
 <script type="text/template">
 # Conclusion
 
-> The biggest/best/most popular sites on the Internet are using realtime web technology to improve their User Experience. You should too.
+> The biggest/best/most popular sites on the Internet are using realtime web technology to improve their User Experience. The tech is really fun to develop with and it will make a positive impact to your app. You should us it.
 
 <small>Me - just now</small>
 </script>
