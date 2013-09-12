@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Writing JavaScript Apps to Scale - Phil @leggetter</title>
+
+		<meta name="description" content="Writing JavaScript Apps to Scale - Phil @leggetter">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../css/reveal.min.css">
+		<link rel="stylesheet" href="../css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<style>
+			.slides section.present.trans
+			 {
+				background: #1c1e20;
+				background: -moz-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+				background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555a5f), color-stop(100%, #1c1e20));
+				background: -webkit-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+				background: -o-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+				background: -ms-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+				background: radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+				background-color: #2b2b2b;
+
+				opacity: 0.8 !important;
+			}
+
+			.slides section.present.trans > * {
+				opacity: 1 !important;
+			}
+
+			.slides section.big-quote blockquote {
+				font-size: 2em;
+			}
+
+			.slides section.about {
+				min-height: 500px !important;
+				text-align: left;
+				display: inline-block;
+			}
+
+			.slides section.about img {
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+
+			.slides section ul {
+				margin-bottom: 30px;
+			}
+
+			html {
+				background: #1c1e20;
+			}
+
+			html.fullbg body {
+				background-position:center;
+				background-size: 100%;
+				background-repeat: no-repeat;
+			}
+
+			html.fullbg.opportunity body {
+				background-image: url('http://foursquare.wpengine.netdna-cdn.com/wp-content/uploads/2010/12/ps_cs_highres1.jpg');
+			}
+
+			html.fullbg.google-analytics body {
+				background-image: url('../img/google-analytics.jpg');
+			}
+
+			html.fullbg.caplin-trader body {
+				background-image: url('../img/caplin-noir.png');
+			}
+
+			html.fullbg.bladerunnerjs body {
+				background-image: url('../img/brjs-bottom-left-logo-on-black.jpg');
+			}
+
+			html.fullbg.workbenches body {
+				background-position:top center;
+				background-image: url('img/workbench_v2.png');
+			}
+
+			#aliens, #google_aliens {
+				width: 100%;
+				height: 100%;
+
+				min-height: 768px;
+				min-width: 1024px;
+			}
+
+			code, .code {
+				text-transform: none !important;
+			}
+
+			.slides section.code-smallest {
+				font-size: 70%;
+			}
+
+			.slides section.code-smaller {
+				font-size: 80%;
+			}
+
+			@-webkit-keyframes pulse {
+      	from {
+        	/*opacity: 0.0;*/
+        	font-size: 200%;
+      	}
+      	to {
+        	/*opacity: 1.0;*/
+        	font-size: 400%;
+      	}
+    	}
+
+    	@-moz-keyframes pulse {
+      	from {
+        	/*opacity: 0.0;*/
+        	font-size: 200%;
+      	}
+      	to {
+        	/*opacity: 1.0;*/
+        	font-size: 400%;
+      	}
+    	}
+    
+    	.pulse {
+	      -webkit-animation-name: pulse;
+	      -webkit-animation-duration: 3s;
+	      -webkit-animation-iteration-count: infinite;
+	      -webkit-animation-timing-function: ease-in-out;
+	      -webkit-animation-direction: alternate;
+
+	      -moz-animation-name: pulse;
+	      -moz-animation-duration: 3s;
+	      -moz-animation-iteration-count: infinite;
+	      -moz-animation-timing-function: ease-in-out;
+	      -moz-animation-direction: alternate;
+	    }
+
+	    .reveal .slides section .fragment.fade-out.visible {
+	    	display: none; /* override default so no UI space it taken up */
+	    }
+
+	    aside.notes {
+	    	white-space: pre;
+	    }
+		</style>
+
+		<!--[if lt IE 9]>
+		<script src="../lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+
+<!--Intro-->
+<section>
+
+<section data-markdown class="trans" data-state="">
+<script type="text/template">
+## Writing JavaScript Apps 
+
+<h1 class="pulse">to Scale</h1>
+</script>
+</section>
+
+<section data-markdown data-state="fullbg bladerunnerjs" class="about">
+
+<script type="text/template">
+Phil [@leggetter](https://twitter.com/leggetter)
+
+Developer Evangelist
+
+[Caplin Systems](http://www.caplin.com)
+
+<img src="../img/me-n-max-zoo.jpg" />
+</script>
+</section>
+
+<section data-markdown data-state="fullbg bladerunnerjs" class="about">
+
+<script type="text/template">
+## Background
+
+* [Caplin Trader](http://www.caplin.com/caplin-trader)
+* Large Single Page Apps (SPAs)
+* Large = complex functionality + lots of code
+* Toolkit & lightweight JS framework
+* Concepts driving [BladeRunnerJS](http://bladerunnerjs.org)
+
+</script>
+</section>
+
+</section>
+<!--/Intro -->
+
+<!--Scale? -->
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# Scale?
+</script>
+</section>
+
+<section>
+<h2 class="fragment shrink fade-out" data-fragment-index="1">
+<pre><code data-trim>
+var scalingJS = !infrastructure;
+</code></pre>
+</h2>
+<h2 class="fragment roll-in" data-fragment-index="1">
+	<pre class="fragment shrink fade-out"><code data-trim>
+var scalingJS =
+  !!maintainableFrontEndApp;
+</code></pre>
+</h2>
+<h2 class="fragment roll-in" data-fragment-index="2">
+	<pre class="fragment shrink fade-out" data-fragment-index="3"><code data-trim>
+/* Erm?! */
+var scalingJS =
+  !!maintainableFrontEndApp;</code></pre>
+</h2>
+<h2 class="fragment roll-in" data-fragment-index="3"><pre><code data-trim>
+function FrontEndApp() {
+  this.maintainable = true;
+};
+
+var scalingJS = new FrontEndApp();
+</code></pre>
+</h2>
+
+<aside class="notes">
+* It means defining a structure and way of creating applications
+* A way that is maintainable
+* And creating apps that follow those principles
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## What is a large-scale JavaScript app?
+
+> In my view, large-scale JavaScript apps are non-trivial applications requiring significant developer effort to maintain, where most heavy lifting of data manipulation and display falls to the browser.
+
+<small><a href="http://addyosmani.com/largescalejavascript/">Addy Osmani - Large-Scale JavaScript</a></small>
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## What factors affect scaling JavaScript apps?
+
+* Complexity
+* Inconsistency
+
+</script>
+
+<aside class="notes">
+* Complexity:
+  * More functionality = more code
+  * More interaction between pieces of code
+  * Increase in potential code paths
+* As code and practices become inconsistent it becomes:
+  * Takes longer to determine how things work
+  * Difficult to work out where functionality is implemented
+  * More bugs are introduced
+  * Inconsistency also results in complexity
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## How do we solve scaling JavaScript apps?
+
+* Simplicity
+* Consistency
+* Enabled via Practices & Patterns
+
+<h2 class="fragment">Backed by Tooling</h2>
+
+</script>
+
+<aside class="notes">
+* We invert the problems:
+  * Complexity => Simplicity
+  * Inconsistency => Consistency
+* KISS - keeping things simple means they are easier to understand and have less responsiblity
+* Tooling can take many forms e.g.
+  * Frameworks
+  * Toolkits
+  * Dev tools e.g. Browser dev tools
+  * Libraries
+  * Workflow enablers
+</aside>
+</section>
+
+</section>
+<!--/Scale? -->
+
+<section data-markdown>
+<script type="text/template">
+# Patterns & Practices
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<!--Coding Style-->
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# Coding Style
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Coding Style Guide
+
+> Programming style is a set of rules or guidelines used when writing the source code for a computer program. It is often claimed that following a particular programming style will help programmers to read and understand source code conforming to the style, and help to avoid introducing errors.
+
+<small>aka <a href="http://en.wikipedia.org/wiki/Programming_style">Programming Style</a></small><br />
+<small>see: <a href="http://caplin.github.io/StyleGuide/">Caplin's Coding Style Guide</a></small><br />
+<small>note: <a href="http://en.wikipedia.org/wiki/Coding_conventions">&quot;Coding Conventions&quot;</a> can cover much more</small>
+
+</script>
+
+<aside class="notes">
+* It's not just to annoy people
+* It's for consistency
+	* declarations
+	* statements
+	* naming conventions
+	* comments
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Tooling
+
+* JSHint / JSLint
+  * automated as part of our development runtime - on F5
+  * as part of your build process
+  * Easily added to editor too
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+</section>
+<!--/Coding Style-->
+
+<!--Code Structure-->
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# Code Structure
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## JavaScript = Flexability
+</script>
+
+<aside class="notes">
+* JavaScript is a dynamic language
+* It's highly flexable
+* This is a great gift, as well as a curse
+  * So many ways of achieving the same thing
+* If you allow JavaScript to be used in all possible ways your codebase will become very difficult to follow
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+# Programming Paradigm
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## OOP
+
+* Classes
+* Inheritance
+* Interfaces
+* Mixins
+* ...
+
+* One class per file
+</script>
+
+<aside class="notes">
+* Consistency:
+	* The vast majority of developers are familiar with OOP
+	* OOP *may* not be as popular as it once was but it's proven to scale in massive systems.
+  	* This is nothing new to JavaScript, but it works
+* Simplicity
+  * Human-being understand it at a conceptual level
+  * Promotes decoupling
+  * Single Responsibility Principle
+	* We average about 100 LoC per file.
+</aside>
+</section>
+
+<section data-markdown class="code-smallest">
+<script type="text/template">
+### Simple OO JavaScript
+    
+    /** @interface */
+    function AnInterface() {}
+
+    /** Method description */
+    Interface.prototype.implementMe = function() {
+    	throw new Error( 'implementMe not implemented' );
+    };
+
+    /** @constructor */
+    function BaseClass() {
+    	this.baseProperty = 'base';
+    }
+
+    /** @constructor */
+    function SubClass() {
+    	this.subProperty = 'sub';
+    }
+    topiary.extend( SubClass, BaseClass );
+    topiary.implement( SubClass, AnInterface );
+
+    /** @see {@link Interface.implementMe} */
+    MyObject.prototype.implementMe = function() {
+    };
+
+</script>
+
+<aside class="notes">
+* Whether or not your code looks like this, the main points are:
+  * It's simple to understand what it does - anybody new to the code will understand it quickly
+  * By consistently following this structure you get all the benefits of OOP
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Packages / Namespaces / Modules / Libraries
+</script>
+
+<aside class="notes">
+* You want to organise your code in some way
+* You don't want code definitions to accidentally overwrite other definitions (global namespace)
+* You want to be able to share code in modules or libraries
+</aside>
+</section>
+
+<section data-markdown class="code-smaller">
+<script type="text/template">
+## Code Example: How we used to do things
+    
+    some.namespace.AnInterface = function() {}
+
+    some.namespace.AnInterface.prototype.implementMe = function() {
+    	throw new Error( 'implementMe not implemented' );
+    };
+
+    some.other.namespace.BaseClass = function() {
+    	this.baseProperty = 'base';
+    };
+
+    an.other.namespace.SubClass = function() {
+    	this.subProperty = 'sub';
+    };
+    topiary.extend( an.other.namespace.SubClass, some.other.namespace.BaseClass );
+    topiary.implement( an.other.namespace.SubClass, some.namespace.AnInterface );
+
+    an.other.namespace.MyObject.prototype.implementMe = function() {
+    };
+
+</script>
+
+<aside class="notes">
+* We used to have a tool that would generate the namespaces in JS before any of the files were loaded based on convention - folder structure
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### Code Example: How we now do things
+    
+    var AnInterface = require( 'some/namespace/AnInterface' );
+    var BaseClass = require( 'some/other/namespace/BaseClass' );
+
+    function SubClass() {
+    	this.subProperty = 'sub';
+    }
+    topiary.extend( SubClass, BaseClass );
+    topiary.implement( SubClass, AnInterface );
+
+    SubClass.prototype.implementMe = function() {
+    };
+
+    module.exports = SubClass;
+
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Tooling
+
+* [Topiary](https://github.com/BladeRunnerJS/topiary): library to help with OOP
+* Scaffolding: CLI to help generate classes, interfaces
+* Node.JS modules supported via:
+	* dev tool
+	* module-loader JS library
+* Code structure checked on F5
+* JSDoc
+</script>
+
+<aside class="notes">
+* Because our code is structured by convention our tooling can actually check the structure.
+</aside>
+</section>
+
+</section>
+<!--/Code Structure-->
+
+<!--Architecture-->
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# Architecture
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Architecture
+
+* We already have some basic Principles of Architecture in place:
+	* our code should be [SOLID](http://en.wikipedia.org/wiki/SOLID_(object-oriented_design))
+* What more do we need?	
+</script>
+
+<aside class="notes">
+* SOLID thanks to us following OOP
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Components
+
+* Small pieces of implemented application functionality
+* We call these Blades
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Event Hub
+
+* Communication between application components
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Services
+
+* Access to resources
+* Uses Intefaces
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## MV*
+
+* MVC, MVP, MVVM
+</script>
+
+<aside class="notes">
+* We follow the MVVM architectual pattern within our apps.
+* I'm not going to go into the details here.
+* Will cover under "Code Quality"
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Divide & Conquer
+
+### Loose coupling throughout
+
+</script>
+
+<aside class="notes">
+* Running theme of creating small pieces of decoupled functionality.
+* Think of this as dividing your web app into simple pieces of functionality - throughout
+* In order to conquer the challenges that you face when building such apps.
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Divide & Conquer
+
+![](img/app-structure.png)
+
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Tooling
+
+* Libraries: glue
+	* Event Hub library
+	* Service Registery library
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+</section>
+<!--/Architecture-->
+
+<!--Asset Structure-->
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# Asset Structure
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Group by Feature. Not type.
+
+![](img/asset-structure.png)
+
+* Isolation
+  * Large teams
+  * Multiple teams
+* Functional [Cohesion][cohesion]
+
+[cohesion]: http://en.wikipedia.org/wiki/Cohesion_(computer_science)
+</script>
+
+<aside class="class">
+* Cohesion - desirable traits of Software Quality
+  * Robustness
+  * Reliablity
+  * Reusability
+  * Understandablity
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Blades & Libraries
+
+* Blades/Components - application level functionality
+* Libraries - cross application shared functionality
+</script>
+
+<aside class="class">
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Tooling
+
+* CL tools that understand structure
+* Workbenches...
+</script>
+</section>
+
+</section>
+
+<section data-markdown data-state="fullbg workbenches">
+<script type="text/template">
+</script>
+
+<aside class="class">
+* Run components/blades in isolation
+* Great for the development process
+* For building integration tests, and writing a lot of the underlying code
+* Stub and mock out Services
+* Stub and mock Event Hub interactions
+</aside>
+</section>
+
+</section>
+<!--/Asset Structure-->
+
+<!--Code Quality-->
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# Code Quality
+</script>
+
+<aside class="notes">
+* It's pretty obvious that for a JS app to scale - for it to be maintainable - it has to be well tested.
+* How do we go about this.
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Simplicity & Consistency
+
+* Coding Style
+* Code Structure
+  * OOP
+  * Module loader
+* Architecture
+  * Event Hub
+  * Services
+  * Divide & Conquer
+* Asset Structure
+  * Group by feature
+  * Develop & Test in isolation
+</script>
+
+<aside class="notes">
+* All the things we're already doing result in it being very easy to test our code
+* Keeping things simple and being consistent naturally reduces the likelihood of mistakes
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Developer Experience
+
+* Know how to style and structure code
+* Knows Architecture to follow and use
+* Knows where to put new code and find existing code
+* Supported by tooling
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Testing
+Please remember, this is incorrect
+![](img/testing-triangle.png)
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Unit Testing
+</script>
+
+<aside class="notes">
+* OOP
+  * Code is structured in a way which help understanding and reduces bugs
+	* Each class does one thing - test that small piece of functionality
+	* Objects interact through interfaces - use mocks and stubs to check interactions
+* Event Hub and Services means application components are loosely coupled and you can run them in isolation without real instances of dependences;
+	* libraries
+	* other modules
+	* back-end services
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Integration Testing
+
+* Event Hub
+* Services
+* MVVM
+</script>
+
+<aside class="notes">
+* Event Hub and Services are here for just that.
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## MVVM
+
+![](img/mvvm.png)
+
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Acceptance Testing
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+</section>
+<!--/Code Quality-->
+
+<!--Conclusion-->
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# Conclusion
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+* Complexity will increase
+* Following Principles & Practices controls complexity
+* Divide & Conquer!
+* But complexity will still increase
+* Tooling is the glue that stops complexity getting out of control
+</script>
+
+<section data-markdown>
+<script type="text/template">
+## Benefits of Tooling
+
+* Coding Style: enforcement
+* Code Structure: automation and enforcement
+* Architecture: reusability and enforcement
+* Asset Structure: automation and enforcement
+* Code Quality: automation and enforcement
+</script>
+
+<aside class="notes">
+* JSHint
+* Creating classes and interfaces and code checking
+</aside>
+</section>
+
+<aside class="notes">
+* No matter how simple individual things are
+* No matter how simple conventions are to follow (for consistency)
+* As the list of things grows, complexity will be introduced
+* Tooling is the glue to keep that complexity at bay
+  * It helps productivity by doing things for you
+  * It enforces constraints to ensure standards are met
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Thanks / Questions
+
+Phil [@leggetter](https://twitter.com/leggetter)
+
+[phil@leggetter.co.uk](mailto:phil@leggetter.co.uk)
+
+<a href="http://realtimewebapps.com"><img src="../img/realtime-web-apps.jpg" /></a>
+</script>
+</section>
+
+</section>
+<!--/Conclusion-->
+
+		</div>
+
+		<script src="../lib/js/head.min.js"></script>
+		<script src="../js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
