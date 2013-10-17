@@ -23,9 +23,9 @@ $(function() {
     }
     else {
       img.addClass('drop-in');
-      if(top.alienDropIn) {
-        top.alienDropIn();
-      }
+      // if(top.alienDropIn) {
+      //   top.alienDropIn();
+      // }
     }
   });
   

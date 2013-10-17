@@ -10,14 +10,12 @@
 	/* Standard */
 	transition: all 1s ease;
 	
-	visibility: hidden;
-	
-	top: -300px;
+	top: -660px;
 	left: 200px;
 	position: absolute;
 }
 .alien.drop-in {
-  visibility: visible;
+  top: -100px;
   
   /* Firefox */
   -moz-transform: scale(2) rotate(180deg) translate(50px);
