@@ -269,14 +269,14 @@ Developer Evangelist
 
 <section>
 
-<section data-markdown data-state="fullbg black">
+<section data-markdown data-background="../img/balloons.jpg">
 <script type="text/template">
 # Benefits & Use Cases
 ## of Realtime
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 # Push = Convenience
 
@@ -327,7 +327,7 @@ Developer Evangelist
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 # Speed = Opportunity
 </script>
@@ -348,11 +348,13 @@ Developer Evangelist
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
-# Interaction = Engagement
+# Interaction
+# =
+# Engagement
 
-Yeah, Games! But, also...
+<small>Yeah, Games! But, also...</small>
 
 </script>
 </section>
@@ -385,7 +387,7 @@ Yeah, Games! But, also...
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 # Use Case Summary
 
@@ -398,7 +400,7 @@ Yeah, Games! But, also...
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 # Interactive
 # Engaging
@@ -506,7 +508,7 @@ Yeah, Games! But, also...
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 # PubSub
 
@@ -524,7 +526,7 @@ Yeah, Games! But, also...
 </script>
 </section>
 
-<section data-markdown id="pusher_twilio">
+<section data-markdown>
 <script type="text/template">
 
 ## PubSub Example
@@ -548,11 +550,11 @@ Yeah, Games! But, also...
 #### Server
 
     data = {
-      :from_number => some_number,
-      :timestamp => Time.now.strftime("%Y-%m-%dT%H:%M:%S"),
-      :text => message
+      :title => some_title,
+      :description => some_description,
+      :timestamp => Time.now.strftime("%Y-%m-%dT%H:%M:%S")
     }
-    Pusher.trigger(CHANNEL_NAME, EVENT_NAME, data)
+    Pusher.trigger( 'alien-search', 'result_updated', data )
 
 </script>
 
@@ -598,7 +600,7 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 ## Remote Method Invocation (RMI)
 
@@ -716,13 +718,10 @@ Yeah, Games! But, also...
 ## Why use an existing solution?
 
 * Fallback/upgrade hacks still required
-* Help from a community
+* Support/Community
 * Maintenance
 * Future features
 * Scaling
-* Dedicated teams
-  * Infrastructure
-  * Support
 </script>
 
 <aside class="notes">
@@ -740,7 +739,7 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 # 2. Know your App
 * Information Architecture a.k.a Data
@@ -769,7 +768,7 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown data-background="#cfe3f4">
+<section data-markdown data-background="#eeeeee" class="">
 <script type="text/template">
 ![](../img/rtw-tech-decision-matrix-solutions.png)
 </script>
@@ -778,7 +777,7 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/languages.jpg" class="fill">
 <script type="text/template">
 # 3. Use languages you're comfortable with
 </script>
@@ -787,23 +786,25 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 ## Solutions by-language
 
-* Ruby: Faye
-* JavaScript (Node.JS): Faye, Socket.IO (Engine.IO)
-* .NET (C#): SignalR, XSockets
-* Python: Lots of options built on Tornado
-* PHP: Erm... Ratchet
-* Language agnostic: most hosted services
+* **Java**: Netty, Jetty
+* **JavaScript (Node.JS)**: Faye, Socket.IO (Engine.IO)
+* **.NET (C#)**: SignalR, XSockets
+* **Python**: Lots of options built on Tornado
+* **PHP**: Erm... ReactPHP... Ratchet
+* **Ruby**: Faye
+* *Language agnostic*: most hosted services
 </script>
 
 <aside class="notes">
+* XSockets - Uffe Björklund and Magnus Thor
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/scaling.jpg" class="trans">
 <script type="text/template">
 # 4. Do you want to scale realtime infrastructure?
 </script>
@@ -812,7 +813,7 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 ## Scaling Realtime Infrastructure
 
@@ -820,31 +821,43 @@ Yeah, Games! But, also...
 * Maintaining state of connections
 * Synchronising data between nodes
 * Mapping connections to users?
+* Where is your value?
+  * Features v Infrastructure
 </script>
 
 <aside class="notes">
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="green">
 <script type="text/template">
 ## Shout-out to Hosted Services
 
+* Dropbox
 * Firebase
-* Hydna
+* Google Drive Realtime API
 * GoInstant
+* Hydna
+* Meteor
 * PubNub
 * Pusher
-* Realtime
+* Realtime.co
+* Simperium
 </script>
 
 <aside class="notes">
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/phones.jpg" class="trans">
 <script type="text/template">
 # 5. Native Mobile Support?
+</script>
+</section>
+
+<section data-markdown class="fill">
+<script type="text/template">
+## Native Mobile Support?
 
 * Only some have mobile clients
 * How much data are you sending?
@@ -859,7 +872,7 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 ## Solutions with Native Mobile Clients
 
@@ -875,7 +888,7 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/keyboard.jpg" class="trans">
 <script type="text/template">
 # 6. Where are you in Development?
 </script>
@@ -884,7 +897,7 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/jigsaw.jpg" class="trans">
 <script type="text/template">
 # You already have an app
 
@@ -897,7 +910,7 @@ Yeah, Games! But, also...
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/greenfield.jpg" class="trans">
 <script type="text/template">
 # You are just starting out
 
@@ -915,7 +928,7 @@ Yeah, Games! But, also...
 <!--End-->
 <section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 # Summary
 
@@ -928,17 +941,19 @@ Yeah, Games! But, also...
 * Wanna Scale? If not, use a hosted solution
 * Native Mobile required?
 * Integrating or starting from scratch?
-  * Loose coupling or go All-in
+  * Tight/Loose Integration or go All-in
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fill">
 <script type="text/template">
 ## Thanks / Questions?
 
 Phil [@leggetter](https://twitter.com/leggetter)
 
 [phil@leggetter.co.uk](mailto:phil@leggetter.co.uk)
+
+See the [Realtime Web Tech Guide](http://www.leggetter.co.uk/real-time-web-technologies-guide)
 
 Find out more about BladeRunnerJS: [bladerunnerjs.org](http://bladerunnerjs.org)
 
