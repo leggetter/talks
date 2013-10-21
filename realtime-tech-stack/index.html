@@ -7,7 +7,7 @@
     <title>Realtime Web App Tech Stack - Phil @leggetter</title>
 
     <meta name="description" content="Realtime Web Apps in the Wild - Phil @leggetter">
-    <meta name="author" content="Hakim El Hattab">
+    <meta name="author" content="Phil Leggetter">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -42,6 +42,20 @@
 
       .slides section.present.fill {
         background: #1c1e20;
+      }
+
+      .slides section.present.white-bg {
+        background: white;
+      }
+
+      .slides section.present.snow {
+        background: #CDC9C9;
+      }
+
+      .slides section.present.snow img {
+        border: 0;
+        background: none;
+        box-shadow: none;
       }
 
       .slides section.present.trans > * {
@@ -134,11 +148,11 @@
 <!--Realtime-->
 <section>
 
-<section data-markdown class="trans" data-background="http://futureofwebapps.com/london-2013/public/svg/match.svg">
+<section data-markdown class="fill" data-background="http://futureofwebapps.com/london-2013/public/svg/match.svg">
 <script type="text/template">
-# Realtime Web App
-
-### Tech Stack
+## Realtime
+## Web App
+## Tech Stack
 
 FOWA London 2013
 </script>
@@ -150,7 +164,7 @@ We all know the benefits of adding realtime interactive functionality to our web
 </aside>
 </section>
 
-<section data-markdown data-state="fullbg bladerunnerjs" class="about">
+<section data-markdown data-state="fullbg" class="about">
 
 <script type="text/template">
 Phil [@leggetter](https://twitter.com/leggetter)
@@ -158,6 +172,10 @@ Phil [@leggetter](https://twitter.com/leggetter)
 Developer Evangelist
 
 [Caplin Systems](http://www.caplin.com)
+
+Open Sourcing <a href="http://bladerunnerjs.org"><img src="/img/bladerunner-js-white-trans-lrg.png" height="40" style="float: none; border: 0; position: relative; display: inline-block; margin: 0px; margin-left: 10px; vertical-align: bottom; background: none;" /></a>
+
+Previously at [Pusher](http://pusher.com)
 
 <img src="../img/me-n-max-zoo.jpg" />
 </script>
@@ -243,14 +261,6 @@ Developer Evangelist
 </aside>
 </section>
 
-<section data-background="http://i3.kym-cdn.com/photos/images/original/000/173/589/RsLid.jpg">
-
-<aside class="notes">
-* You don't want your users thinking "WAT" when they see the data that's been delivered
-* And you certainly don't want critical systems doing the same.
-</aside>
-</section>
-
 <section data-markdown class="fill" data-background="../img/time.jpg">
 <script type="text/template">
 ## Data Must be Delivered within a Timely Manner
@@ -310,6 +320,7 @@ Developer Evangelist
 * Live blogs
 * Also an example of 2nd screen
 * And you can also see how this ties into betting scenarios
+* Built by Aqueduct
 </aside>
 </section>
 
@@ -432,9 +443,10 @@ Developer Evangelist
 </script>
 </section>
 
-<section data-markdown data-state="fullbg" data-background="../img/polling-boo.png">
+<section data-markdown class="trans" data-state="fullbg" data-background="../img/polling-boo.png">
 <script type="text/template">
-# Don't Poll!
+# Still Polling?
+## Time to rethink!
 </script>
 </section>
 
@@ -460,18 +472,8 @@ Developer Evangelist
 <script type="text/template">
 # Server-Sent Events
 ### EventSource API
-</script>
-</section>
-
-<section data-markdown data-background="green">
-<script type="text/template">
-# WebSocket
-
-* A [protocol](http://tools.ietf.org/html/rfc6455) and an API
-* Single bi-directional connection
-* Supports cross domain communication
-* [Browser support](http://caniuse.com/#feat=websockets): Chrome<small>m</small>, FF<small>m</small>, IE10<small>m</small>, Safari<small>m</small>, Opera, Blackberry browser
-(<small><sup>m</sup> = mobile</small>)
+# WebSockets
+### Protocol & API
 </script>
 </section>
 
@@ -495,7 +497,7 @@ Developer Evangelist
 
 <section data-markdown data-background="../img/binary-code.jpg">
 <script type="text/template">
-## Data
+# Data
 ### &
 ## Client <-> Server interaction
 </script>
@@ -552,7 +554,7 @@ Developer Evangelist
     data = {
       :title => some_title,
       :description => some_description,
-      :timestamp => Time.now.strftime("%Y-%m-%dT%H:%M:%S")
+      :uri => some_uri
     }
     Pusher.trigger( 'alien-search', 'result_updated', data )
 
@@ -910,6 +912,39 @@ Developer Evangelist
 </aside>
 </section>
 
+<section data-markdown data-background="../img/jigsaw.jpg" data-online-img="https://docs.google.com/drawings/d/1End0XOqgV2hznsXiZwKs6q0AP31Vbwz3qf7GcE3EB-w/pub?w=1440&amp;h=1080" class="snow">
+<script type="text/template">
+### Self Hosted
+<small>Tightly Coupled</small>
+![](../img/realtime-web-stack-tight-integration-self-hosted.png)
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown data-background="../img/jigsaw.jpg" data-online-img="https://docs.google.com/drawings/d/13Vp7vum9qSAM-uiZ6KpQ1y7VqPD2FBuqoR_9sPBJMvM/pub?w=1440&amp;h=1080" class="snow">
+<script type="text/template">
+### Self Hosted
+<small>Loosely Coupled</small>
+
+![](../img/realtime-web-stack-integration-self-hosted.png)
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown data-background="../img/jigsaw.jpg" data-online-img="https://docs.google.com/drawings/d/1ZSFhNVtTI56wLd56WmdlUQSFE51K4JtnpCyOCAIjI38/pub?w=1440&amp;h=1080" class="snow">
+<script type="text/template">
+### Hosted
+![](../img/realtime-web-stack-integration-hosted.png)
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
 <section data-markdown data-background="../img/greenfield.jpg" class="trans">
 <script type="text/template">
 # You are just starting out
@@ -917,6 +952,29 @@ Developer Evangelist
 * Architecture considerations
   * Loose coupling
   * Go all-in with "new breed of framework"
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown data-background="../img/greenfield.jpg" class="trans">
+<script type="text/template">
+## Realtime Framework
+
+* Meteor & Hosted Offering
+* SailsJS
+* [SocketStream](http://www.socketstream.org/)
+
+## BaaS (Back-end as a Service)
+
+* Firebase
+* Go Instant
+* Parse
+* ...
+
+See: http://nobackend.org/
+
 </script>
 
 <aside class="notes">
@@ -992,6 +1050,33 @@ Find out more about BladeRunnerJS: [bladerunnerjs.org](http://bladerunnerjs.org)
           { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
         ]
       });
+
+      Reveal.addEventListener( 'ready', function( event ) {
+          // event.currentSlide, event.indexh, event.indexv
+
+          setTimeout( replaceWithOnlineImages, 100 );
+      } );
+
+      function replaceWithOnlineImages() {
+        var sections = document.querySelectorAll( '[data-online-img]' );
+        for( var i = 0, l = sections.length; i < l; ++i ) {
+          var section = sections[ i ];
+          var replaceImg = section.querySelector( 'img' );
+          var img = new Image();
+          img.src =  section.getAttribute( 'data-online-img' );
+          img.onload = replaceWrapper( replaceImg, img );
+        }
+      }
+
+      function replaceWrapper( replaceImg, withImg ) {
+        return function() {
+          replaceImgOnLoad( replaceImg, withImg );
+        };
+      }
+
+      function replaceImgOnLoad( replaceImg, withImg ) {
+        replaceImg.src = withImg.src;
+      }
 
     </script>
 
