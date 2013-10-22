@@ -776,6 +776,11 @@ Previously at [Pusher](http://pusher.com)
 </script>
 
 <aside class="notes">
+* SockJS - focus on simple connections
+* Some solutions offer PubSub and data sync
+* Dropbox - offer simple DataStore API
+* Only know a few RMI options
+* New solutions: Meteor, DerbyJS, SailsJS - maybe a new category for these?
 </aside>
 </section>
 
@@ -920,6 +925,10 @@ Previously at [Pusher](http://pusher.com)
 </script>
 
 <aside class="notes">
+* Less initial overhead - quick Integration
+* As project grows complexity increases
+* Updating request/response cycle may impact realtime functionality and vise-versa
+* Likely that the web server is handling load of both standard HTTP and realtime i.e. WebSocket, Server-Sent Events, HTTP fallbacks
 </aside>
 </section>
 
@@ -932,6 +941,12 @@ Previously at [Pusher](http://pusher.com)
 </script>
 
 <aside class="notes">
+* Generally agreed that a loosely coupled architecture is going to be easier to change and maintain
+* Your DB may even be message-queue-capable e.g. Redis.
+* So you simply need to hook your realtime server into that
+* Web App for HTTP
+* Realtime for realtime functionality
+* Scale-out realtime server in the same way as web server
 </aside>
 </section>
 
@@ -942,6 +957,10 @@ Previously at [Pusher](http://pusher.com)
 </script>
 
 <aside class="notes">
+* The point in a hosted server is to
+  * Make things easier and faster  
+  * Reduce scaling complexities
+* Communication with Hosted Service over API (probably Web API)
 </aside>
 </section>
 
@@ -962,15 +981,15 @@ Previously at [Pusher](http://pusher.com)
 <script type="text/template">
 ## Realtime Framework
 
-* Meteor & Hosted Offering
+* Meteor & hosted offering (your-app.meteor.com)
 * SailsJS
 * [SocketStream](http://www.socketstream.org/)
 
 ## BaaS (Back-end as a Service)
 
 * Firebase
+* Simperium
 * Go Instant
-* Parse
 * ...
 
 See: http://nobackend.org/
@@ -978,6 +997,10 @@ See: http://nobackend.org/
 </script>
 
 <aside class="notes">
+* A Framework where you can self-host
+* Or hosted service: a BaaS where your can focus mainly on front-end functionality
+* In both cases: Realtime is baked in
+* Will "Realtime" simply become an expected piece of functionality in the same way we expect to be able to persist data?
 </aside>
 </section>
 
@@ -988,10 +1011,9 @@ See: http://nobackend.org/
 
 <section data-markdown class="fill">
 <script type="text/template">
-# Summary
+### Summary
 
 * Realtime offers Business & User Benefits
-* Realtime Fundamentals
 * Lots of solutions available: Use one
 * Choose a solution for your apps needs:
   * onMessage, PubSub, Sync, RMI
@@ -1000,16 +1022,29 @@ See: http://nobackend.org/
 * Native Mobile required?
 * Integrating or starting from scratch?
   * Tight/Loose Integration or go All-in
+* Will Realtime become standard in all frameworks & apps?
 </script>
+
+<aside class="notes">
+* Realtime is used in some of the biggest and most successful apps right now
+* It's easy for your to use it too - if you're not already
+* Lots to consider when choosing a framework
+* Hopefully this talk has given you a better understanding of the uses and considerations:
+  * From functionality to architecture, languages to platforms
+* It's a really exciting time to be using this technology: we are in the future already!  
+</aside>
+
 </section>
 
 <section data-markdown class="fill">
 <script type="text/template">
-## Thanks / Questions?
+### Thanks / Questions?
 
 Phil [@leggetter](https://twitter.com/leggetter)
 
 [phil@leggetter.co.uk](mailto:phil@leggetter.co.uk)
+
+Slides: [j.mp/realtime-tech-stack](http://j.mp/realtime-tech-stack)
 
 See the [Realtime Web Tech Guide](http://www.leggetter.co.uk/real-time-web-technologies-guide)
 
