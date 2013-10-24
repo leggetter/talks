@@ -210,7 +210,7 @@ Previously at [Pusher](http://pusher.com)
 <script type="text/template">
 ## Web Communication
 
-* 1990 HTTP
+* 1991 HTTP v0.9 (first documented version)
 * 1996 Java Applets
 * ~2000 HTTP Server Push
 </script>
@@ -374,6 +374,11 @@ Previously at [Pusher](http://pusher.com)
 <small>Yeah, Games! But, also...</small>
 
 </script>
+<aside class="notes">
+* Twitter
+* Facebook
+* Communiation platforms
+</aside>
 </section>
 
 <section data-markdown data-background="../img/jabbr.png" class="trans">
@@ -454,6 +459,14 @@ Previously at [Pusher](http://pusher.com)
 # Still Polling?
 ## Time to rethink!
 </script>
+
+<aside class="notes">
+* Polling at regular intervals can be inefficient
+* Using a realtime web technology will be:
+  * Stable
+  * More efficient
+  * Require less code and less maintenance
+</aside>
 </section>
 
 <section data-markdown data-background="../img/comet.jpg">
@@ -480,6 +493,7 @@ Previously at [Pusher](http://pusher.com)
 ### EventSource API
 # WebSockets
 ### Protocol & API
+<small>P2P WebRTC</small>
 </script>
 </section>
 
@@ -487,7 +501,7 @@ Previously at [Pusher](http://pusher.com)
 ## We still need the hacks
 
 * WebSocket
-* Server-Sent Events
+* EventSource / Server-Sent Events
 * HTTP Streaming
 * HTTP Long-Polling
 * HTTP Polling
@@ -504,9 +518,9 @@ Previously at [Pusher](http://pusher.com)
 <section data-markdown data-background="../img/binary-code.jpg">
 <script type="text/template">
 # Realtime Functionality
-#### Data
-#### &
-#### Client <-> Server interaction
+### Data
+### &
+### Client <-> Server interaction
 </script>
 </section>
 
@@ -523,6 +537,34 @@ Previously at [Pusher](http://pusher.com)
  
 #### Receive message
  
+    var sock = new SockJS( 'http://localhost:9999/sockjs' );
+    
+    sock.onmessage = function( e ) {
+      console.log( 'message', e.data );
+    };
+ 
+#### Send Message
+ 
+    var http = require('http');
+        sockjs = require('sockjs');
+
+    var hello = sockjs.createServer();
+    hello.on( 'connection' , function( conn ) {
+      conn.write( 'hello SockJS' );
+    } );
+
+    var server = http.createServer();
+    echo.installHandlers( server, { prefix:'/sockjs' } );
+    server.listen( 9999, '0.0.0.0' );
+</script>
+</section>
+
+<!-- <section data-markdown>
+<script type="text/template">
+## onMessage example
+ 
+#### Receive message
+ 
     var connection = new HydnaChannel( 'public.hydna.net/78455098', 'r' );
  
     connection.onmessage = function( event ) {
@@ -533,7 +575,7 @@ Previously at [Pusher](http://pusher.com)
  
     curl --data "Hello from curl" http://public.hydna.net/78455098    
 </script>
-</section>
+</section> -->
 
 <section data-markdown class="fill">
 <script type="text/template">
@@ -756,7 +798,7 @@ Previously at [Pusher](http://pusher.com)
 </aside>
 </section>
 
-<section data-markdown data-state="fullbg realtime-solutions">
+<section data-markdown data-state="fullbg realtime-solutions" data-online-img="https://docs.google.com/drawings/d/1SU822R4rVRpOBagjHX2ql7tn9s4egvXhPOAz1JixrUY/pub?w=1440&amp;h=1080">
 <script type="text/template">
 ![](img/realtime-solutions.png)
 </script>
@@ -777,7 +819,7 @@ Previously at [Pusher](http://pusher.com)
  
 <section data-markdown class="fill">
 <script type="text/template">
-## Solutions by-language
+## Solutions by language
  
 * **Java**: Netty, Jetty
 * **JavaScript (Node.JS)**: Faye, Socket.IO (Engine.IO)
@@ -793,82 +835,9 @@ Previously at [Pusher](http://pusher.com)
 </aside>
 </section>
 
-<section data-markdown class="fill">
-<script type="text/template">
-## 3. Understand your App's Functionality
-* Information Architecture a.k.a Data
-* Interaction Complexity:
-  * How users will interact with your app
-  * Client <-> Server interactions
-* Understand the type of functionality you need:  
-  * onMessage, PubSub, Sync, RMI
-</script>
-
-<aside class="notes">
-* Going back to the 4 data paradigms:
-* Do you want a few simple streams of data - onMessage
-* Are there multiple streams where the app chops and changes the information it wants - PubSub
-* Do you need bi-directional communication?
-* Are you effectively manipulating a share data structure - sync
-* Or are you trying to provide access to server functionality in a more elegant way - RMI
-</aside>
-</section>
-
-<section data-markdown data-background="#593193">
-<script type="text/template">
-![](../img/rtw-tech-decision-matrix-white.png)
-</script>
-
-<aside class="notes">
-</aside>
-</section>
-
-<section data-markdown data-background="#593193">
-<script type="text/template">
-## TODO: Matrix of where examples fit
-</script>
- 
-<aside class="notes">
-</aside>
-</section>
-
-<section data-markdown data-background="#eeeeee" class="">
-<script type="text/template">
-![](../img/rtw-tech-decision-matrix-solutions.png)
-</script>
-
-<aside class="notes">
-* SockJS - focus on simple connections
-* Some solutions offer PubSub and data sync
-* Dropbox - offer simple DataStore API
-* Only know a few RMI options
-* New solutions: Meteor, DerbyJS, SailsJS - maybe a new category for these?
-</aside>
-</section>
-
-<section data-markdown data-background="green">
-<script type="text/template">
-## Shout-out to Hosted Services
-
-* Dropbox
-* Firebase
-* Google Drive Realtime API
-* GoInstant
-* Hydna
-* Meteor
-* PubNub
-* Pusher
-* Realtime.co
-* Simperium
-</script>
-
-<aside class="notes">
-</aside>
-</section>
-
 <section data-markdown data-background="../img/phones.jpg" class="trans">
 <script type="text/template">
-# 4. Native Mobile Support?
+# 3. Native Mobile Support?
 </script>
 </section>
 
@@ -893,15 +862,79 @@ Previously at [Pusher](http://pusher.com)
 <script type="text/template">
 ## Solutions with Native Mobile Clients
 
+* Faye
 * Firebase
 * Hydna
 * PubNub
 * Pusher
 * Realtime
 * SignalR
+* Socket.IO
 </script>
 
 <aside class="notes">
+</aside>
+</section>
+
+<section data-markdown class="fill">
+<script type="text/template">
+## 4. Understand your App's Functionality
+* Information Architecture a.k.a Data
+* Interaction Complexity:
+  * How users will interact with your app
+  * Client <-> Server interactions
+* Understand the type of functionality you need:  
+  * onMessage, PubSub, Sync, RMI
+</script>
+
+<aside class="notes">
+* Going back to the 4 data paradigms:
+* Do you want a few simple streams of data - onMessage
+* Are there multiple streams where the app chops and changes the information it wants - PubSub
+* Do you need bi-directional communication?
+* Are you effectively manipulating a share data structure - sync
+* Or are you trying to provide access to server functionality in a more elegant way - RMI
+</aside>
+</section>
+
+<section data-markdown data-background="#593193" data-online-img="https://docs.google.com/drawings/d/1gSe5k7WEL4c8uE5XjQV4ohKR3iEkbmDpYfdS6PCYzmM/pub?w=1440&amp;h=1080">
+<script type="text/template">
+![](../img/rtw-tech-decision-matrix-white.png)
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown data-background="#FFFFFF" data-online-img="https://docs.google.com/drawings/d/1R-cj5G0VTsViIRACMFU6uZKJDr3rhyy1H1uO1OjvhX4/pub?w=1440&amp;h=1080">
+<script type="text/template">
+<img src="" />
+</script>
+ 
+<aside class="notes">
+* ITV News - PubSub
+* Man City - PubSub
+* Google Analytics: Realtime - Data Sync
+* Cloud 9 - Data Sync
+* FourSquare
+* Caplin Trader - PubSub
+* Chat - JabbR - Uses RMI - feels like it should be PubSub
+* Google Docs - Data Sync
+* Murally - Uses PubSub - feels like it should be Data Sync
+</aside>
+</section>
+
+<section data-markdown data-background="#eeeeee" class="" data-online-img="https://docs.google.com/drawings/d/1iah1VmHezlPOW6tnNTf5HB_0GZl2LC09M5_7pRu_beM/pub?w=1440&amp;h=1080">
+<script type="text/template">
+![](../img/rtw-tech-decision-matrix-solutions.png)
+</script>
+
+<aside class="notes">
+* SockJS - focus on simple connections
+* Some solutions offer PubSub and data sync
+* Dropbox - offer simple DataStore API
+* Only know a few RMI options
+* New solutions: Meteor, DerbyJS, SailsJS - maybe a new category for these?
 </aside>
 </section>
 
@@ -980,6 +1013,26 @@ Previously at [Pusher](http://pusher.com)
 </aside>
 </section>
 
+<section data-markdown data-background="green">
+<script type="text/template">
+## Shout-out to Hosted Services
+
+* Dropbox
+* Firebase
+* Google Drive Realtime API
+* GoInstant
+* Hydna
+* Meteor
+* PubNub
+* Pusher
+* Realtime.co
+* Simperium
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
 <section data-markdown data-background="../img/greenfield.jpg" class="trans">
 <script type="text/template">
 # You are just starting out
@@ -987,7 +1040,7 @@ Previously at [Pusher](http://pusher.com)
 * Architecture considerations
   * Loose coupling
   * Hosted?
-  * Go all-in with "new breed of framework"
+  * Go all-in with a "new breed of framework"
 </script>
 
 <aside class="notes">
@@ -1033,14 +1086,17 @@ See: http://nobackend.org/
 ### Summary
 
 * Realtime offers Business & User Benefits
-* Lots of solutions available: Use one
-* Choose a solution for your apps needs:
-  * onMessage, PubSub, Sync, RMI
-* If possible, choose by language
-* Wanna Scale? If not, use a hosted solution
-* Native Mobile required?
-* Integrating or starting from scratch?
-  * Tight/Loose Integration or go All-in
+
+* How to choose:
+  1. Lots of solutions available: Use one
+  * Choose by language
+  * Native mobile support?
+  * Understand your App's functionality
+    * onMessage, PubSub, Sync, RMI
+  * Point in App development life-cycle
+    * Integration
+    * Starting from scratch
+
 * Will Realtime become standard in all frameworks & apps?
 </script>
 
