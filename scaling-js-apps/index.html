@@ -280,9 +280,9 @@ var scalingJS = new FrontEndApp();
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="img/gmail-compose-open.png">
 <script type="text/template">
-![](img/gmail-compose-open.png)
+
 </script>
 </section>
 
@@ -388,7 +388,7 @@ The Human Factor
 <script type="text/template">
 ## Scale apps to account for:
 
-1. complexity
+1. Complexity
 2. Size (codebase)
 3. Contributors (human factors)
 </script>
@@ -748,8 +748,45 @@ ArnoldRimmer.prototype.lie = function() {
 
 <section data-markdown>
 <script type="text/template">
-## Packages / Namespaces / Modules / Libraries
+## Tooling
+
+* OO
+  * [Topiary](https://github.com/BladeRunnerJS/topiary) library to help with OOP
+  * Shims
+  * Multiple OO libraries available
+  * Multiple libraries provide ways of achieving this
+* Scaffolding: CLI to help generate classes, interfaces etc.
+  * [Yeoman](http://yeoman.io)
+  * BRJS CommandPlugin<sup>†</sup>
+  * [Loom](https://github.com/rpflorence/loom)
+
+<small>† May offer this</small>
 </script>
+
+<aside class="notes">
+* Because our code is structured by convention our tooling can actually check the structure.
+* Node.JS modules supported via:
+  * dev tool
+  * module-loader JS library
+* Code structure checked on F5
+* JSDoc
+</aside>
+</section>
+
+</section>
+<!-- / Code Structure
+
+<!-- Modules -->
+<section>
+
+<section data-markdown>
+<script type="text/template">
+## Modules / Packages / Namespaces / Libraries
+</script>
+
+</section>
+
+<!--
 
 <aside class="notes">
 * You want to organise your code in some way
@@ -812,29 +849,11 @@ ArnoldRimmer.prototype.lie = function() {
 </aside>
 </section>
 
-<section data-markdown>
-<script type="text/template">
-## Tooling
+-->
 
-* [Topiary](https://github.com/BladeRunnerJS/topiary) library to help with OOP
-* Scaffolding: CLI to help generate classes, interfaces etc.
-  * [Yeoman](http://yeoman.io)
-  * BRJS CommandPlugin<sup>†</sup>
-
-
-* Node.JS modules supported via:
-  * dev tool
-  * module-loader JS library
-* Code structure checked on F5
-* JSDoc
-
-<small>† May offer this</small>
-</script>
-
-<aside class="notes">
-* Because our code is structured by convention our tooling can actually check the structure.
-</aside>
 </section>
+
+
 
 </section>
 <!--/Code Structure-->
@@ -994,6 +1013,7 @@ ArnoldRimmer.prototype.lie = function() {
   * Other resources
 * Composite components
   * Components containing other components  
+* MVVM / MV*
 
 </script>
 
@@ -1045,12 +1065,14 @@ ArnoldRimmer.prototype.lie = function() {
 * Reference components in libraries
 * Define app-specific components
 * Provide app-specific functionality
+* Unlikely to have a defined API
 * Contain all required assets:
   * JavaScript
   * HTML
   * CSS
   * i18n
   * Other resources
+* MVVM / MV*
 
 </script>
 
@@ -1112,7 +1134,6 @@ Again we have:
 ## Services
 
 * Uses Intefaces
-* Access to resources
 
 ```
 // Contact Service Interface
@@ -1154,7 +1175,7 @@ Register Service
 var ServiceRegistry = require( 'br/ServiceRegistry' );
 var RestfulContactService = require( 'myapp/RestfulContactService' );
 
-ServiceRegistry.registerService( 'contact-search-service',
+ServiceRegistry.registerService( 'contact-service',
                                  new RestfulContactService() );
 
 ```
@@ -1171,7 +1192,7 @@ Access & Use Service
 var ServiceRegistry = require( 'br/ServiceRegistry' )
 
 var contactService =
-  ServiceRegistry.getService( 'contact-search-service' );
+  ServiceRegistry.getService( 'contact-service' );
 
 var rimmer = contactService.search( "Arnold Judas Rimmer" );
 contactService.delete( rimmer );
@@ -1217,7 +1238,8 @@ function TabManager() {
 }
 TabManager.prototype.tabClicked = function( tabName ) {
   var event = { 'tabName': tabName }; // tabName e.g. 'primary'
-  eventHub.channel( 'gmail-tabs' ).trigger( 'tab-clicked', event );
+  eventHub.channel( 'gmail-tabs' )
+    .trigger( 'tab-clicked', event );
 };
 ```
 
@@ -1225,7 +1247,8 @@ Subscribe and Handle event
 
 ```
 function EmailList() {
-  eventHub.channel( 'gmail-tabs' ).on( 'tab-clicked', this._tabClicked, this );  
+  eventHub.channel( 'gmail-tabs' )
+    .on( 'tab-clicked', this._tabClicked, this );  
 }
 
 EmailList.prototype._tabClicked = function( event ) {
@@ -1269,8 +1292,24 @@ EmailList.prototype._tabClicked = function( event ) {
 </section>
 <!-- / Services -->
 
-<!--Asset Structure-->
+<!-- Workbenches -->
 <section>
+
+<section data-markdown>
+<script type="text/template">
+# Bonus Dev Tooling
+
+## BRJS Workbenches
+
+Run Blades in Isolation
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+![](img/caplin-fx-motif.png)
+</script>
+</section>
 
 <section data-markdown data-state="fullbg workbenches">
 <script type="text/template">
@@ -1286,7 +1325,7 @@ EmailList.prototype._tabClicked = function( event ) {
 </section>
 
 </section>
-<!--/Asset Structure-->
+<!-- / Workbenches -->
 
 <!--Code Quality-->
 <section>
@@ -1309,14 +1348,14 @@ EmailList.prototype._tabClicked = function( event ) {
 * Coding Style
 * Code Structure
   * OOP
-  * Module loader
+  * Modules, Packages, Libraries
 * Architecture
-  * Event Hub
-  * Services
   * Divide & Conquer
+  * Services
+  * Event Hub
 * Asset Structure
   * Group by feature
-  * Develop & Test in isolation
+  * Develop in isolation in Workbenches
 </script>
 
 <aside class="notes">
@@ -1327,63 +1366,73 @@ EmailList.prototype._tabClicked = function( event ) {
 
 <section data-markdown>
 <script type="text/template">
-## Developer Experience
+### Patterns, Practices & Tooling
 
+* Enabled a better Developer Experience
 * Know how to style and structure code
 * Knows Architecture to follow and use
 * Knows where to put new code and find existing code
-* Supported by tooling
+* Workflow improved through tooling
 </script>
 
 <aside class="notes">
 </aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## And of course
+# Testing
+</script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
 ## Testing
+
+* Unit Test All Classes
+* Test App functionality (Blades) in isolation
+  * View Model changes -> Mocked Services
+  * Dummy Service interactions -> View Model
+  * Blade UI in Web Browsers in isolation -> Mocked Services
+* Enabled by ServiceRegistry
+* Some full app ATs and Manual tests
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
 ![](img/testing-triangle.png)
 </script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Unit Testing
-</script>
 
 <aside class="notes">
-* OOP
-  * Code is structured in a way which help understanding and reduces bugs
-  * Each class does one thing - test that small piece of functionality
-  * Objects interact through interfaces - use mocks and stubs to check interactions
-* Event Hub and Services means application components are loosely coupled and you can run them in isolation without real instances of dependences;
-  * libraries
-  * other modules
-  * back-end services
 </aside>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Integration Testing
+## Benefits of Services and MVVM
 
-* Event Hub
-* Services
-* MVVM
+* Full suite of tests used to take 24 hours
+* Now takes less 30 minutes
 </script>
-
-<aside class="notes">
-* Event Hub and Services are here for just that.
-</aside>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Acceptance Testing
-</script>
+## Tooling & Libraries
 
-<aside class="notes">
-</aside>
+* BRJS
+  * Presenter library for MVVM tests
+  * ServiceRegistry for mocking services
+  * BRJS CLI wraps JSTestDriver to execute tests
+* Other
+  * Any MVVM library
+  * Karma test runner
+  * Jasmin Node
+</script>
+</section>
+
 </section>
 
 </section>
@@ -1400,11 +1449,13 @@ EmailList.prototype._tabClicked = function( event ) {
 
 <section data-markdown>
 <script type="text/template">
+## Consistency, Simplicity, Separation of Concerns
+
 * Complexity will increase
-* Following Principles & Practices controls complexity
+* Following Principles & Practices controls
+  * Complexity & Consistency
 * Divide & Conquer!
-* But complexity will still increase
-* Tooling is the glue that stops complexity getting out of control
+* Tooling is the glue that makes things easier
 </script>
 </section>
 
@@ -1414,7 +1465,7 @@ EmailList.prototype._tabClicked = function( event ) {
 
 * Coding Style: enforcement
 * Code Structure: automation and enforcement
-* Architecture: reusability and enforcement
+* Architecture: automation and enforcement
 * Asset Structure: automation and enforcement
 * Code Quality: automation and enforcement
 </script>
@@ -1429,8 +1480,6 @@ EmailList.prototype._tabClicked = function( event ) {
 </section>
 
 <aside class="notes">
-* JSHint
-* Creating classes and interfaces and code checking
 </aside>
 </section>
 
