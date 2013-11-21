@@ -1064,6 +1064,18 @@ Again we have:
 </aside>
 </section>
 
+<section data-markdown>
+<script type="text/template">
+## Libraries & Tooling
+
+* A BRJS specific concept
+* BRJS CLI has a `create-blade` command
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
 </section>
 <!-- / Blades -->
 
@@ -1103,15 +1115,20 @@ Again we have:
 * Access to resources
 
 ```
-function HologramPersistenceService() {
+// Contact Service Interface
+function ContactService() {
 }
 
-HologramPersistenceService.prototype.backup = function( hologram ) {
-  throw new Error( 'backup must be implemented by Class' );
+ContactService.prototype.search = function( value ) {
+  throw new Error( 'search must be implemented by Class' );
 };
 
-HologramPersistenceService.prototype.restore = function( name ) {
-  throw new Error( 'restore must be implemented by Class' );
+ContactService.prototype.save = function( contact ) {
+  throw new Error( 'save must be implemented by Class' );
+};
+
+ContactService.prototype.delete = function( contact ) {
+  throw new Error( 'delete must be implemented by Class' );
 };
 ```
 </script>
@@ -1119,14 +1136,14 @@ HologramPersistenceService.prototype.restore = function( name ) {
 
 <section data-markdown>
 <script type="text/template">
-## Using Services
+## Setting Up Services
 
 Define Service
 
 ```
-function MongoDBHologramBackup() {
+function RestfulContactService() {
 }
-topiarist.implements( MongoDBHologramBackup, HologramPersistenceService );
+topiarist.implements( RestfulContactService, ContactService );
 
 // implementation overrides
 ```
@@ -1135,9 +1152,10 @@ Register Service
 
 ```
 var ServiceRegistry = require( 'br/ServiceRegistry' );
+var RestfulContactService = require( 'myapp/RestfulContactService' );
 
-ServiceRegistry.registerService( 'hologram-persistence-service',
-                                 new MongoDBHologramBackup() );
+ServiceRegistry.registerService( 'contact-search-service',
+                                 new RestfulContactService() );
 
 ```
 </script>
@@ -1150,17 +1168,29 @@ ServiceRegistry.registerService( 'hologram-persistence-service',
 Access & Use Service
 
 ```
-var ServiceRegistry = require( 'br/ServiceRegistry' );
+var ServiceRegistry = require( 'br/ServiceRegistry' )
 
-var hologramBackupService =
-  ServiceRegistry.getService( 'hologram-persistence-service' );
+var contactService =
+  ServiceRegistry.getService( 'contact-search-service' );
 
-hologramBackupService.backup( rimmer );
-rimmer.off();
+var rimmer = contactService.search( "Arnold Judas Rimmer" );
+contactService.delete( rimmer );
 
-var krissy = hologramBackupService.restore( 'Kristine Kochanski' );
-krissy.on();
+var Contact = require( 'myapp/Contact' );
+contactService.save( new Contact( 'Kristine Kochanski' ) );
 ```
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Services enable Loose Coupled Communication
+
+* Interact with Interfaces and not implementation
+* Accessed via ServiceRegistry (no `new MyThing()`)
+* Implemenations can be swapped out
+* We use this for in-app communcation too
+
 </script>
 </section>
 
@@ -1169,19 +1199,67 @@ krissy.on();
 ## Event Hub
 
 * Communication between application components
+* Inter-Blade Communication
 </script>
 </section>
 
+<section data-markdown>
+<script type="text/template">
+## Using the Event Hub
+
+Publish Event
+
+```
+var ServiceRegistry = require( 'br/ServiceRegistry' );
+var eventHub = ServiceRegistry.getService( 'br.event-hub' );
+
+function TabManager() {
+}
+TabManager.prototype.tabClicked = function( tabName ) {
+  var event = { 'tabName': tabName }; // tabName e.g. 'primary'
+  eventHub.channel( 'gmail-tabs' ).trigger( 'tab-clicked', event );
+};
+```
+
+Subscribe and Handle event
+
+```
+function EmailList() {
+  eventHub.channel( 'gmail-tabs' ).on( 'tab-clicked', this._tabClicked, this );  
+}
+
+EmailList.prototype._tabClicked = function( event ) {
+  // Search for emails that go under the Primary tab
+  // Display results / Update UI
+};
+
+```
+
+</script>
 </section>
-<!-- / Services -->
 
 <section data-markdown>
 <script type="text/template">
-## Tooling
+## Event Hub
 
-* Libraries: glue
-  * Event Hub library
-  * Service Registery library
+* Loosely Coupled Communication
+* In-App components
+  * e.g. Inter-Blade Communication
+* PubSub
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Tooling & Libraries
+
+* Service Registery library
+* Event Hub library
+* [AngularJS Dependency Injection](http://docs.angularjs.org/guide/di)
+* [Marionette](http://marionettejs.com/) offers optional IoC
+* [SomaJS DI](http://somajs.github.io/somajs/site/#using-dependency-injection-in-somajs)
+* [di.js](https://github.com/NickQiZhu/di.js)
+* See "The Mediator Pattern" (EventHub)
 </script>
 
 <aside class="notes">
@@ -1189,62 +1267,10 @@ krissy.on();
 </section>
 
 </section>
-<!--/Architecture-->
+<!-- / Services -->
 
 <!--Asset Structure-->
 <section>
-
-<section data-markdown>
-<script type="text/template">
-# Asset Structure
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Group by Feature. Not type.
-
-![](img/asset-structure.png)
-
-* Isolation
-  * Large teams
-  * Multiple teams
-* Functional [Cohesion][cohesion]
-
-[cohesion]: http://en.wikipedia.org/wiki/Cohesion_(computer_science)
-</script>
-
-<aside class="class">
-* Cohesion - desirable traits of Software Quality
-  * Robustness
-  * Reliablity
-  * Reusability
-  * Understandablity
-</aside>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Blades & Libraries
-
-* Blades/Components - application level functionality
-* Libraries - cross application shared functionality
-</script>
-
-<aside class="class">
-</aside>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Tooling
-
-* CL tools that understand structure
-* Workbenches...
-</script>
-</section>
-
-</section>
 
 <section data-markdown data-state="fullbg workbenches">
 <script type="text/template">
