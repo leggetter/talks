@@ -26,6 +26,27 @@
     </script>
 
     <style>
+    /*
+      #4d7e65 - green
+      #007777 - blue
+      #8c4738 - red
+    */
+      body {
+        background: #000000;
+      }
+
+      .reveal a, a:visited {
+        color: #80ba27 !important;
+      }
+
+      .reveal .emphasise-bold strong,
+      .reveal .emphasise-bold b,
+      .emphasise h1,
+      .emphasise h2,
+      .emphasise h3 {
+        color: #80ba27 !important;
+      }
+
       .slides section.present.trans
        {
         background: #1c1e20;
@@ -40,6 +61,18 @@
         opacity: 0.8 !important;
       }
 
+      .slides section.present.visible
+       {
+        background: #1c1e20;
+        background: -moz-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555a5f), color-stop(100%, #1c1e20));
+        background: -webkit-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background: -o-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background: -ms-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background: radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background-color: #2b2b2b;
+      }
+
       .slides img {
         border: 0 !important;
         box-shadow: none !important;
@@ -52,6 +85,14 @@
 
       .slides section.big-quote blockquote {
         font-size: 2em;
+      }
+
+      .reveal .light-bg,
+      .reveal .light-bg h1,
+      .reveal .light-bg h2,
+      .reveal .light-bg h3,
+      .reveal .light-bg h4 {
+        color: black !important;
       }
 
       .slides section.about {
@@ -74,30 +115,11 @@
         text-transform: none;
       }
 
-      html {
-        background: #1c1e20;
-      }
 
       html.fullbg body {
         background-position:center;
         background-size: 100%;
         background-repeat: no-repeat;
-      }
-
-      html.fullbg.opportunity body {
-        background-image: url('http://foursquare.wpengine.netdna-cdn.com/wp-content/uploads/2010/12/ps_cs_highres1.jpg');
-      }
-
-      html.fullbg.google-analytics body {
-        background-image: url('../img/google-analytics.jpg');
-      }
-
-      html.fullbg.caplin-trader body {
-        background-image: url('../img/caplin-noir.png');
-      }
-
-      html.fullbg.bladerunnerjs body {
-        background-image: url('../img/brjs-bottom-left-logo-on-black.jpg');
       }
 
       html.fullbg.workbenches body {
@@ -177,7 +199,7 @@
 <!--Intro-->
 <section>
 
-<section data-markdown class="trans" data-state="">
+<section data-markdown data-background="../img/green.jpg">
 <script type="text/template">
 ## Writing JavaScript Apps 
 
@@ -186,7 +208,6 @@
 </section>
 
 <section data-markdown>
-
 <script type="text/template">
 Phil [@leggetter](https://twitter.com/leggetter)
 
@@ -209,7 +230,7 @@ Phil [@leggetter](https://twitter.com/leggetter)
 
 <section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/space_stars.jpg">
 <script type="text/template">
 # "Scale"
 </script>
@@ -276,19 +297,19 @@ var scalingJS = new FrontEndApp();
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/nebular_bg.jpg">
 <script type="text/template">
 # 1. Complexity
 </script>
 </section>
 
-<section data-markdown data-background="img/gmail-compose-open.png">
+<section data-markdown unzip_location/sdk/brjs>
 <script type="text/template">
-
+![](img/gmail-compose-open.png)
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown >
 <script type="text/template">
 ![](img/caplin-fx-motif.png)
 </script>
@@ -296,7 +317,7 @@ var scalingJS = new FrontEndApp();
 
 <section data-markdown>
 <script type="text/template">
-### Gmail & Caplin Trader
+## Gmail & Caplin Trader
 
 * Large Single Page Apps (SPAs)
 * Complex functionality
@@ -313,7 +334,7 @@ var scalingJS = new FrontEndApp();
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/binary-code.jpg">
 <script type="text/template">
 # 2. Size (Large Codebase)
 
@@ -346,17 +367,17 @@ More functionality = More Code
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="img/contributors.png" class="light-bg">
 <script type="text/template">
 # 3. Contributors
 
-The Human Factor
+### The Human Factor
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-# Who contributes to an app?
+## Who contributes to an app?
 
 * Multiple devs
 * Multiple teams
@@ -404,7 +425,7 @@ The Human Factor
 
 <section data-markdown>
 <script type="text/template">
-# Scaling problems caused by
+## Scaling problems caused by
 
 * Inconsitency
 * Unnecessary Complexity
@@ -427,7 +448,7 @@ The Human Factor
 
 <section data-markdown>
 <script type="text/template">
-# Problems avoided through
+## Problems avoided through
 
 * Consistency
 * Simplicity
@@ -463,7 +484,7 @@ These are the patterns & practices we've considered when:
 
 * Defining our development workflow
 * Defining our application architecture
-* Defining & building our development tools
+* Defining & building our libraries & development tools
 
 ## Tooling & Libraries
 
@@ -472,15 +493,16 @@ These are the patterns & practices we've considered when:
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown class="emphasise-bold">
 <script type="text/template">
-## Tooling & Libraries enable, encourage (and enforce) good practices
+## Tooling & Libraries:
+## Enable, Encourage (and Enforce) good practices
 
-* Consistent Coding Style
-* Consistent Code Structure
-* A Maintainable Application Architecture
+* **Coding Style**
+* **Code Structure**
+* **Application Architecture**
   * Technology & Human Factors
-* Code quality through testing
+* **Code Quality**
 </script>
 
 <aside class="notes">
@@ -493,7 +515,7 @@ These are the patterns & practices we've considered when:
 <!--Coding Style-->
 <section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/polling-boo.png">
 <script type="text/template">
 # Coding Style
 </script>
@@ -531,7 +553,7 @@ These are the patterns & practices we've considered when:
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="#2b2b2b">
 <script type="text/template">
 ## Editor Integration
 ### Realtime feedback
@@ -588,7 +610,7 @@ These are the patterns & practices we've considered when:
 <!--Code Structure-->
 <section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/building-blocks.jpg">
 <script type="text/template">
 # Code Structure
 </script>
@@ -598,7 +620,7 @@ These are the patterns & practices we've considered when:
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="emphasise">
 <script type="text/template">
 ## JavaScript === Flexible
 </script>
@@ -650,7 +672,7 @@ These are the patterns & practices we've considered when:
 </section>
 
 
-<section data-markdown>
+<section data-markdown data-background="img/mining-ship.jpg">
 <script type="text/template">
 ### Classes
 
@@ -711,12 +733,13 @@ SmegHead.prototype.lie = function() {
 function ArnoldRimmer() {
   this.name = 'Arnold Judas Rimmer';
 }
-// Arnold Judas Rimmer is a Smeg Head
-topiarist.implement( ArnoldRimmer, SmegHead )
 
 ArnoldRimmer.prototype.lie = function() {
   return 'I aced my engineering exam';
 };
+
+// Arnold Judas Rimmer is a Smeg Head
+topiarist.implement( ArnoldRimmer, SmegHead );
 ```
 </script>
 </section>
@@ -752,11 +775,11 @@ ArnoldRimmer.prototype.lie = function() {
 <script type="text/template">
 ## Libraries & Tooling
 
-* OO
-  * [Topiary](https://github.com/BladeRunnerJS/topiary) library to help with OOP
+* OOP
+  * [Topiarist](https://github.com/BladeRunnerJS/topiarist) library to help with OOP
   * Shims
-  * Multiple OO libraries available
-  * Multiple libraries provide ways of achieving this
+  * [Multiple dedicated OO libraries](http://microjs.com/#OOP) available
+  * Multiple libraries include ways of achieving this
 * Scaffolding: CLI to help generate classes, interfaces etc.
   * BRJS CommandPlugin<sup>†</sup>
   * [Yeoman](http://yeoman.io) generators
@@ -775,46 +798,46 @@ ArnoldRimmer.prototype.lie = function() {
 <!-- Modules -->
 <section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/jigsaw.jpg" class="visible">
 <script type="text/template">
 ## Modules / Packages / Namespaces / Libraries
-
-No time :o(
 </script>
-
-</section>
-
-<!--
 
 <aside class="notes">
 * You want to organise your code in some way
 * You don't want code definitions to accidentally overwrite other definitions (global namespace)
 * You want to be able to share code in modules or libraries
+* And a way of loading / bundling files beyond manually managed includes
 </aside>
 </section>
 
 <section data-markdown class="code-smaller">
 <script type="text/template">
 ## Code Example: How we used to do things
-    
-    some.namespace.AnInterface = function() {}
 
-    some.namespace.AnInterface.prototype.implementMe = function() {
-      throw new Error( 'implementMe not implemented' );
-    };
+`src/some/namespace/BaseClass.js`
 
-    some.other.namespace.BaseClass = function() {
-      this.baseProperty = 'base';
-    };
+```
+some.namespace.BaseClass = function() {
+  this.baseProperty = 'base';
+};
+```
 
-    an.other.namespace.SubClass = function() {
-      this.subProperty = 'sub';
-    };
-    topiary.extend( an.other.namespace.SubClass, some.other.namespace.BaseClass );
-    topiary.implement( an.other.namespace.SubClass, some.namespace.AnInterface );
+`src/an/other/namespace/SubClass.js`
 
-    an.other.namespace.MyObject.prototype.implementMe = function() {
-    };
+```
+an.other.namespace.SubClass = function() {
+  this.subProperty = 'sub';
+};
+topiarist.extend( an.other.namespace.SubClass, some.namespace.BaseClass );
+```
+
+`src/myapp/App.js`
+```
+function myApp.App() {
+  this.thing = new an.other.namespace.SubClass();
+}
+```
 
 </script>
 
@@ -825,33 +848,114 @@ No time :o(
 
 <section data-markdown>
 <script type="text/template">
-### Code Example: How we now do things
-    
-    var AnInterface = require( 'some/namespace/AnInterface' );
-    var BaseClass = require( 'some/other/namespace/BaseClass' );
+## Globally Accessible JS 
 
-    function SubClass() {
-      this.subProperty = 'sub';
-    }
-    topiary.extend( SubClass, BaseClass );
-    topiary.implement( SubClass, AnInterface );
-
-    SubClass.prototype.implementMe = function() {
-    };
-
-    module.exports = SubClass;
-
+* File structure represented namespace
+* Tooling generated namespace objects
+* And analysed dependencies
+* And bundled files
 </script>
 
 <aside class="notes">
 </aside>
 </section>
 
--->
+<section data-markdown>
+<script type="text/template">
+### Code Example: How we do things now
 
+`src/an/other/namespace/SubClass.js`
+
+```
+var br = require( 'br' );
+var BaseClass = require( 'some/other/namespace/BaseClass' );
+
+function SubClass() {
+  this.subProperty = 'sub';
+}
+br.extend( SubClass, BaseClass );
+
+module.exports = SubClass;
+```
+
+`src/myapp/App.js`
+```
+var SubClass = require( 'an/other/namespace/SubClass' );
+
+function App() {
+  this.thing = new SubClass();
+}
+
+var app = new App();
+```
+</script>
+
+<aside class="notes">
+* Borrowing from Node.js
+* Want to focus on writing code related to app functionality
+* Not writing code which works around the runtime - the browser
+</aside>
 </section>
 
+<section data-markdown>
+<script type="text/template">
+## Modular JS
 
+* Node.js style code in the browser
+* File structure still represented namespace
+* Namespaces are not defined in code
+  * Just referenced when used
+* Tooling wraps code
+* Analyses dependencies
+* And bundles files
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+### This is converted to
+
+```
+define( function( require, exports, module ) {
+
+var br = require( 'br' );
+var BaseClass = require( 'some/other/namespace/BaseClass' );
+
+function SubClass() {
+  this.subProperty = 'sub';
+}
+br.extend( SubClass, BaseClass );
+
+module.exports = SubClass;
+
+});
+```
+</script>
+
+<aside class="notes">
+* The tooling add code to handle the environment
+</aside>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Tools & Libraries
+
+* Synchronous Loading (bundlers)
+  * Built in to BRJS toolkit
+  * [Browserify](http://browserify.org/)
+  * [Ender](http://ender.jit.su/)
+* Asynchronous Loading
+  * [RequireJS](http://requirejs.org/)
+  * [curl.js](https://github.com/cujojs/curl)
+</script>
+
+<aside class="notes">
+</aside>
+</section>
 
 </section>
 <!--/Code Structure-->
@@ -859,7 +963,7 @@ No time :o(
 <!--Architecture-->
 <section>
 
-<section data-markdown>
+<section data-markdown data-background="img/plugin-interfaces.png" class="light-bg">
 <script type="text/template">
 # Application Architecture
 </script>
@@ -873,8 +977,8 @@ No time :o(
 <script type="text/template">
 ## Application Structure
 
-* Functional components
 * Application plumbing & foundations
+* Functional components
 * Assets
 </script>
 
@@ -921,7 +1025,7 @@ No time :o(
 </aside>
 </section>
 
-<section data-markdown data-online-img="https://docs.google.com/drawings/d/1a2Opv-dEWL_RWsdj-bjaQg-3nz-EeVVJRO_vGTg1gVo/pub?w=1440&h=1080">
+<section data-markdown  data-online-img="https://docs.google.com/drawings/d/1a2Opv-dEWL_RWsdj-bjaQg-3nz-EeVVJRO_vGTg1gVo/pub?w=1440&h=1080">
 <script type="text/template">
 ### Application Overview
 
@@ -941,12 +1045,15 @@ No time :o(
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="#007777">
 <script type="text/template">
 ### Application Assets
 
 ![](img/asset-structure.png)
 </script>
+<aside class="notes">
+* Assets should be grouped with the code associated with a piece of functionality within the app
+</aside>
 </section>
 
 <section data-markdown>
@@ -956,6 +1063,9 @@ No time :o(
 * Managing the inclusion of these would be hard
 * BRJS analyses dependencies and creates bundles
 </script>
+<aside class="notes">
+* As with JS code, dependency analysis is used
+</aside>
 </section>
 
 </section>
@@ -965,7 +1075,7 @@ No time :o(
 
 <section>
 
-<section data-markdown data-online-img="https://docs.google.com/drawings/d/1h7vb-SgklqIlDZe_C1WPoPBgjbMBHyPQ5u9lKI2ORB8/pub?w=1438&h=819">
+<section data-markdown  data-online-img="https://docs.google.com/drawings/d/1h7vb-SgklqIlDZe_C1WPoPBgjbMBHyPQ5u9lKI2ORB8/pub?w=1438&h=819">
 <script type="text/template">
 ### Components
 
@@ -981,11 +1091,11 @@ No time :o(
 
 <section data-markdown>
 <script type="text/template">
-## MV*
+## Built using MV*
 
 * MVC, MVP, MVVM
 * We use Presenter, built on KnockoutJS
-* Provides SoC
+* MVVM provides amazing SoC
 </script>
 
 <aside class="notes">
@@ -996,7 +1106,7 @@ No time :o(
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="#007777">
 <script type="text/template">
 ### MVVM
 
@@ -1042,7 +1152,8 @@ No time :o(
 * [Polymer](http://www.polymer-project.org/)
 * [Montage](http://montagejs.org/)
 * [Flight](http://twitter.github.io/flight/)
-* & the usual suspects: KnockoutJS, Backbone, Angular, Ember
+* The usual suspects:
+  * KnockoutJS, Backbone, Angular, Ember
   * But, these are more than just component libraries
 </script>
 
@@ -1233,7 +1344,13 @@ contactService.save( new Contact( 'Kristine Kochanski' ) );
 </script>
 </section>
 
-<!--section data-markdown>
+<section data-markdown data-online-img="https://docs.google.com/drawings/d/1pZlpvs_rlcCbY3LVREvQ4NJgPz357_G8AezYmCCL3Os/pub?w=1438&h=819">
+<script type="text/template">
+![](img/gmail-tabs.png)
+</script>
+</section>
+
+<section data-markdown>
 <script type="text/template">
 ## Using the Event Hub
 
@@ -1279,14 +1396,14 @@ EmailList.prototype._tabClicked = function( event ) {
   * e.g. Inter-Blade Communication
 * PubSub
 </script>
-</section-->
+</section>
 
 <section data-markdown>
 <script type="text/template">
 ## Tooling & Libraries
 
-* Service Registery library
-* Event Hub library
+* BRJS Service Registery library
+* BRJS Event Hub library
 * [AngularJS Dependency Injection](http://docs.angularjs.org/guide/di)
 * [Marionette](http://marionettejs.com/) offers optional IoC
 * [SomaJS DI](http://somajs.github.io/somajs/site/#using-dependency-injection-in-somajs)
@@ -1340,12 +1457,29 @@ EmailList.prototype._tabClicked = function( event ) {
 <!-- / Workbenches -->
 
 <!-- Aspects -->
-<section data-markdown>
+<section>
+
+<section data-markdown data-online-img="https://docs.google.com/drawings/d/1Sk1hzn6XaO_3CBkVMg2y-8x5wdnTAi4doTP5SGPBpR8/pub?w=1440&h=1080">
+<script type="text/template">
+![](img/brjs-basic-architecture-aspects.png)
+</script>
+</section>
+
+<section data-markdown >
+<script type="text/template">
+* Desktop
+* Mobile 
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+<section data-markdown >
 <script type="text/template">
 ## Aspects
 
-* A view into the application
-* Groups Blades together
+* A composed view of the Blades in an Application
 * Example Aspects:
   * Desktop
   * Mobile
@@ -1362,7 +1496,7 @@ EmailList.prototype._tabClicked = function( event ) {
 <!--Code Quality-->
 <section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/balloons.jpg">
 <script type="text/template">
 # Code Quality
 </script>
@@ -1412,12 +1546,15 @@ EmailList.prototype._tabClicked = function( event ) {
   * View Model changes -> Mocked Services
   * Dummy Service interactions -> View Model
   * Blade UI in Web Browsers in isolation -> Mocked Services
-* Enabled by ServiceRegistry
+* Enabled by App Architecture
+  * MVVM
+  * Blades
+  * Services
 * Some full app ATs and Manual tests
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="#007777">
 <script type="text/template">
 ![](img/testing-triangle.png)
 </script>
@@ -1426,9 +1563,9 @@ EmailList.prototype._tabClicked = function( event ) {
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/time.jpg" class="visible">
 <script type="text/template">
-## Benefits of Services and MVVM
+## Test Time Savings!
 
 * Full suite of tests used to take 24 hours
 * Now takes less 30 minutes
@@ -1445,6 +1582,7 @@ EmailList.prototype._tabClicked = function( event ) {
   * BRJS CLI wraps JSTestDriver to execute tests
 * Other
   * Any MVVM library
+  * Any Dependency Injection / IoC library
   * Karma test runner
   * Jasmin Node
 </script>
@@ -1458,7 +1596,7 @@ EmailList.prototype._tabClicked = function( event ) {
 <!--Conclusion-->
 <section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/flare.jpg">
 <script type="text/template">
 # Conclusion
 </script>
@@ -1466,13 +1604,18 @@ EmailList.prototype._tabClicked = function( event ) {
 
 <section data-markdown>
 <script type="text/template">
-## Benefits of Tooling & Libraries
+## Tooling & Libraries enable:
 
-* Coding Style: enforcement
-* Code Structure: automation and enforcement
-* Architecture: automation and enforcement
-* Asset Structure: automation and enforcement
-* Code Quality: automation and enforcement
+* Coding Style
+  * enforcement
+* Code Structure
+  * automation and enforcement
+* Architecture
+  * enforcement
+* Asset Structure
+  * automation and enforcement
+* Code Quality
+  * automation and enforcement
 </script>
 <aside class="notes">
 * No matter how simple individual things are
