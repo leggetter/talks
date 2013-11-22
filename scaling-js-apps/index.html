@@ -227,6 +227,7 @@ where most heavy lifting of data manipulation and display falls to the browser.
 </script>
 </section>
 
+<!--
 <section>
 
 <h2 class="fragment shrink fade-out" data-fragment-index="1">
@@ -267,6 +268,7 @@ var scalingJS = new FrontEndApp();
 * And creating apps that follow those principles
 </aside>
 </section>
+-->
 
 <section data-markdown>
 <script type="text/template">
@@ -354,7 +356,7 @@ The Human Factor
 
 <section data-markdown>
 <script type="text/template">
-# Who contributors to an app?
+# Who contributes to an app?
 
 * Multiple devs
 * Multiple teams
@@ -372,7 +374,7 @@ The Human Factor
 </aside>
 </section>
 
-<section data-markdown>
+<!--section data-markdown>
 <script type="text/template">
 # Caplin Dev Teams Diag
 </script>
@@ -382,7 +384,7 @@ The Human Factor
 <script type="text/template">
 # Customer Dev Teams Diag
 </script>
-</section>
+</section-->
 
 <section data-markdown>
 <script type="text/template">
@@ -406,7 +408,7 @@ The Human Factor
 
 * Inconsitency
 * Unnecessary Complexity
-* Overlapping concerns (better term for this)
+* Overlapping concerns <small>need a better term</small>
 
 </script>
 <aside class="notes">
@@ -431,7 +433,7 @@ The Human Factor
 * Simplicity
 * Separation of Concerns (SoC)
 
-<h2 class="fragment">Enabled through Principles, Practices & Tooling</h2>
+<h2 class="fragment">Enabled through Principles, Practices, Libraries & Tooling</h2>
 
 </script>
 <aside class="notes">
@@ -463,16 +465,16 @@ These are the patterns & practices we've considered when:
 * Defining our application architecture
 * Defining & building our development tools
 
-## Tooling
+## Tooling & Libraries
 
-* Building our tooling: [BladeRunnerJS](http://bladerunnerjs.org)
+* Building our tooling & libraries: [BladeRunnerJS](http://bladerunnerjs.org)
 
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Tooling enables, encourages (and enforces) good practices
+## Tooling & Libraries enable, encourage (and enforce) good practices
 
 * Consistent Coding Style
 * Consistent Code Structure
@@ -748,7 +750,7 @@ ArnoldRimmer.prototype.lie = function() {
 
 <section data-markdown>
 <script type="text/template">
-## Tooling
+## Libraries & Tooling
 
 * OO
   * [Topiary](https://github.com/BladeRunnerJS/topiary) library to help with OOP
@@ -756,20 +758,14 @@ ArnoldRimmer.prototype.lie = function() {
   * Multiple OO libraries available
   * Multiple libraries provide ways of achieving this
 * Scaffolding: CLI to help generate classes, interfaces etc.
-  * [Yeoman](http://yeoman.io)
   * BRJS CommandPlugin<sup>†</sup>
+  * [Yeoman](http://yeoman.io) generators
   * [Loom](https://github.com/rpflorence/loom)
 
 <small>† May offer this</small>
 </script>
 
 <aside class="notes">
-* Because our code is structured by convention our tooling can actually check the structure.
-* Node.JS modules supported via:
-  * dev tool
-  * module-loader JS library
-* Code structure checked on F5
-* JSDoc
 </aside>
 </section>
 
@@ -782,6 +778,8 @@ ArnoldRimmer.prototype.lie = function() {
 <section data-markdown>
 <script type="text/template">
 ## Modules / Packages / Namespaces / Libraries
+
+No time :o(
 </script>
 
 </section>
@@ -951,6 +949,15 @@ ArnoldRimmer.prototype.lie = function() {
 </script>
 </section>
 
+<section data-markdown>
+<script type="text/template">
+### All those Assets!!!
+
+* Managing the inclusion of these would be hard
+* BRJS analyses dependencies and creates bundles
+</script>
+</section>
+
 </section>
 <!-- /Architecture -->
 
@@ -978,6 +985,7 @@ ArnoldRimmer.prototype.lie = function() {
 
 * MVC, MVP, MVVM
 * We use Presenter, built on KnockoutJS
+* Provides SoC
 </script>
 
 <aside class="notes">
@@ -1029,7 +1037,7 @@ ArnoldRimmer.prototype.lie = function() {
 <script type="text/template">
 ## Tools, Libs & Other Component Solutions
 
-* [Presenter](http://bladerunnerjs.org/docs/concepts/presenter/)
+* BRJS [Presenter](http://bladerunnerjs.org/docs/concepts/presenter/)
 * [Web Components](http://www.w3.org/TR/components-intro/)
 * [Polymer](http://www.polymer-project.org/)
 * [Montage](http://montagejs.org/)
@@ -1220,11 +1228,12 @@ contactService.save( new Contact( 'Kristine Kochanski' ) );
 ## Event Hub
 
 * Communication between application components
-* Inter-Blade Communication
+* e.g. Inter-Blade Communication
+* By basic PubSub message passing
 </script>
 </section>
 
-<section data-markdown>
+<!--section data-markdown>
 <script type="text/template">
 ## Using the Event Hub
 
@@ -1270,7 +1279,7 @@ EmailList.prototype._tabClicked = function( event ) {
   * e.g. Inter-Blade Communication
 * PubSub
 </script>
-</section>
+</section-->
 
 <section data-markdown>
 <script type="text/template">
@@ -1301,7 +1310,10 @@ EmailList.prototype._tabClicked = function( event ) {
 
 ## BRJS Workbenches
 
-Run Blades in Isolation
+* Run Blades in Isolation
+* Interact with Blade via:
+  * Services
+  * View Model (MVVM)
 </script>
 </section>
 
@@ -1327,6 +1339,26 @@ Run Blades in Isolation
 </section>
 <!-- / Workbenches -->
 
+<!-- Aspects -->
+<section data-markdown>
+<script type="text/template">
+## Aspects
+
+* A view into the application
+* Groups Blades together
+* Example Aspects:
+  * Desktop
+  * Mobile
+* Bundles are created for each Aspect on deployment 
+</script>
+
+<aside class="notes">
+</aside>
+</section>
+
+</section>
+<!-- / Aspects -->
+
 <!--Code Quality-->
 <section>
 
@@ -1343,7 +1375,7 @@ Run Blades in Isolation
 
 <section data-markdown>
 <script type="text/template">
-## Simplicity & Consistency
+### Code Quality Ground work
 
 * Coding Style
 * Code Structure
@@ -1361,21 +1393,6 @@ Run Blades in Isolation
 <aside class="notes">
 * All the things we're already doing result in it being very easy to test our code
 * Keeping things simple and being consistent naturally reduces the likelihood of mistakes
-</aside>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-### Patterns, Practices & Tooling
-
-* Enabled a better Developer Experience
-* Know how to style and structure code
-* Knows Architecture to follow and use
-* Knows where to put new code and find existing code
-* Workflow improved through tooling
-</script>
-
-<aside class="notes">
 </aside>
 </section>
 
@@ -1449,19 +1466,7 @@ Run Blades in Isolation
 
 <section data-markdown>
 <script type="text/template">
-## Consistency, Simplicity, Separation of Concerns
-
-* Complexity will increase
-* Following Principles & Practices controls
-  * Complexity & Consistency
-* Divide & Conquer!
-* Tooling is the glue that makes things easier
-</script>
-</section>
-
-<section data-markdown>
-<script type="text/template">
-## Benefits of Tooling
+## Benefits of Tooling & Libraries
 
 * Coding Style: enforcement
 * Code Structure: automation and enforcement
@@ -1473,14 +1478,23 @@ Run Blades in Isolation
 * No matter how simple individual things are
 * No matter how simple conventions are to follow (for consistency)
 * As the list of things grows, complexity will be introduced
-* Tooling is the glue to keep that complexity at bay
+* Tooling & libraries are the glue to keep that complexity at bay
   * It helps productivity by doing things for you
   * It enforces constraints to ensure standards are met
 </aside>
 </section>
 
-<aside class="notes">
-</aside>
+<section data-markdown>
+<script type="text/template">
+## Consistency, Simplicity, Separation of Concerns
+
+* Complexity will increase
+* Following Principles & Practices controls
+  * Complexity & Consistency
+* Divide & Conquer!
+* Tooling & Libraries are the glue that makes things easier
+* Enabing a Front-end JS App that Scales
+</script>
 </section>
 
 <section data-markdown>
