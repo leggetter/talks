@@ -486,16 +486,16 @@ These are the patterns & practices we've considered when:
 * Defining our application architecture
 * Defining & building our libraries & development tools
 
-## Tooling & Libraries
+## Libraries & Tooling
 
-* Building our tooling & libraries: [BladeRunnerJS](http://bladerunnerjs.org)
+* Building our libraries & tooling: [BladeRunnerJS](http://bladerunnerjs.org)
 
 </script>
 </section>
 
 <section data-markdown class="emphasise-bold">
 <script type="text/template">
-## Tooling & Libraries:
+## Libraries & Tooling:
 ## Enable, Encourage (and Enforce) good practices
 
 * **Coding Style**
@@ -692,6 +692,7 @@ ArnoldRimmer.prototype.answerExamPaper = function() {
 };
 
 var rimmer = new ArnoldRimmer();
+rimmer.answerExamPaper();
 ```
 </script>
 </section>
@@ -729,16 +730,16 @@ SmegHead.prototype.lie = function() {
   throw new Error( 'lie must be implemented by Class' );
 };
 
-// Override functions
 function ArnoldRimmer() {
   this.name = 'Arnold Judas Rimmer';
 }
 
+// Override functions
 ArnoldRimmer.prototype.lie = function() {
   return 'I aced my engineering exam';
 };
 
-// Arnold Judas Rimmer is a Smeg Head
+// Arnold Judas Rimmer behaves like a Smeg Head
 topiarist.implement( ArnoldRimmer, SmegHead );
 ```
 </script>
@@ -782,7 +783,7 @@ topiarist.implement( ArnoldRimmer, SmegHead );
   * Multiple libraries include ways of achieving this
 * Scaffolding: CLI to help generate classes, interfaces etc.
   * BRJS CommandPlugin<sup>†</sup>
-  * [Yeoman](http://yeoman.io) generators
+  * [Yeoman](http://yeoman.io)
   * [Loom](https://github.com/rpflorence/loom)
 
 <small>† May offer this</small>
@@ -897,16 +898,17 @@ var app = new App();
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="emphasise-bold">
 <script type="text/template">
 ## Modular JS
 
 * Node.js style code in the browser
-* File structure still represented namespace
+* File structure still represents namespace
 * Namespaces are not defined in code
   * Just referenced when used
+* **Code for functionality. Not runtime workarounds.**
 * Tooling wraps code
-* Analyses dependencies
+* **And Analyses dependencies**
 * And bundles files
 </script>
 
@@ -918,18 +920,18 @@ var app = new App();
 <script type="text/template">
 ### This is converted to
 
-```
+```javascript
 define( function( require, exports, module ) {
 
-var br = require( 'br' );
-var BaseClass = require( 'some/other/namespace/BaseClass' );
+  var br = require( 'br' );
+  var BaseClass = require( 'some/other/namespace/BaseClass' );
 
-function SubClass() {
-  this.subProperty = 'sub';
-}
-br.extend( SubClass, BaseClass );
+  function SubClass() {
+    this.subProperty = 'sub';
+  }
+  br.extend( SubClass, BaseClass );
 
-module.exports = SubClass;
+  module.exports = SubClass;
 
 });
 ```
@@ -945,10 +947,10 @@ module.exports = SubClass;
 ## Tools & Libraries
 
 * Synchronous Loading (bundlers)
-  * Built in to BRJS toolkit
+  * [BRJS toolkit](http://bladerunnerjs.org)
   * [Browserify](http://browserify.org/)
   * [Ender](http://ender.jit.su/)
-* Asynchronous Loading
+* Asynchronous Loading (AMD)
   * [RequireJS](http://requirejs.org/)
   * [curl.js](https://github.com/cujojs/curl)
 </script>
@@ -969,13 +971,12 @@ module.exports = SubClass;
 </script>
 
 <aside class="notes">
-* Application structure
 </aside>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Application Structure
+## Architecture & Structure
 
 * Application plumbing & foundations
 * Functional components
@@ -997,7 +998,7 @@ module.exports = SubClass;
 * Loosely coupling
 * High cohesion
 
-## Divide & Conquer
+## "Divide & Conquer"
 
 </script>
 
@@ -1058,7 +1059,7 @@ module.exports = SubClass;
 
 <section data-markdown>
 <script type="text/template">
-### All those Assets!!!
+## All those Assets!!!
 
 * Managing the inclusion of these would be hard
 * BRJS analyses dependencies and creates bundles
@@ -1074,6 +1075,14 @@ module.exports = SubClass;
 <!-- Components -->
 
 <section>
+
+<section data-markdown data-online-img="https://docs.google.com/drawings/d/14leUF4k-TAOKmkyOjXy8fSlYgW9HXZRvjIYuwlUqFgU/pub?w=1440&h=1080">
+<script type="text/template">
+![](img/brjs-basic-architecture-components.png)
+</script>
+<aside class="notes">
+</aside>
+</section>
 
 <section data-markdown  data-online-img="https://docs.google.com/drawings/d/1h7vb-SgklqIlDZe_C1WPoPBgjbMBHyPQ5u9lKI2ORB8/pub?w=1438&h=819">
 <script type="text/template">
@@ -1150,6 +1159,7 @@ module.exports = SubClass;
 * BRJS [Presenter](http://bladerunnerjs.org/docs/concepts/presenter/)
 * [Web Components](http://www.w3.org/TR/components-intro/)
 * [Polymer](http://www.polymer-project.org/)
+* [Component.io](http://component.io)
 * [Montage](http://montagejs.org/)
 * [Flight](http://twitter.github.io/flight/)
 * The usual suspects:
@@ -1169,6 +1179,14 @@ module.exports = SubClass;
 
 <section>
 
+<section data-markdown data-online-img="https://docs.google.com/drawings/d/1HYrPrZzNA_1nYBM7ap51xPdLLGf7BRonPNu37Bf6UYs/pub?w=1440&h=1080">
+<script type="text/template">
+![](img/brjs-basic-architecture-blades.png)
+</script>
+<aside class="notes">
+</aside>
+</section>
+
 <section data-markdown data-online-img="https://docs.google.com/drawings/d/1S78A4Gcm9GFrzzIXoJcJUwt6FcI792NKKroTvzBT-MM/pub?w=1438&h=819">
 <script type="text/template">
 ## Blades
@@ -1177,14 +1195,11 @@ module.exports = SubClass;
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown class="emphasise-bold">
 <script type="text/template">
 ## Blades
 
 * Reference components in libraries
-* Define app-specific components
-* Provide app-specific functionality
-* Unlikely to have a defined API
 * Contain all required assets:
   * JavaScript
   * HTML
@@ -1192,6 +1207,10 @@ module.exports = SubClass;
   * i18n
   * Other resources
 * MVVM / MV*
+* **Define app-specific components**
+* **Provide app-specific functionality**
+* **Unlikely to have a defined API**
+* **Teams can work on vertical slices of app functionaity**
 
 </script>
 
@@ -1210,7 +1229,10 @@ Again we have:
 ## Libraries & Tooling
 
 * A BRJS specific concept
-* BRJS CLI has a `create-blade` command
+* BRJS CLI has a supporing command:
+  ```
+  create-blade <blade-name>
+  ```
 </script>
 
 <aside class="notes">
@@ -1250,24 +1272,32 @@ Again we have:
 
 <section data-markdown>
 <script type="text/template">
-## Services
+## Contacts Service Example
 
-* Uses Intefaces
+![](img/gmail-contacts.png)
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+
+## Uses Intefaces
 
 ```
 // Contact Service Interface
-function ContactService() {
+function ContactsService() {
 }
 
-ContactService.prototype.search = function( value ) {
+ContactsService.prototype.search = function( value ) {
   throw new Error( 'search must be implemented by Class' );
 };
 
-ContactService.prototype.save = function( contact ) {
+ContactsService.prototype.save = function( contact ) {
   throw new Error( 'save must be implemented by Class' );
 };
 
-ContactService.prototype.delete = function( contact ) {
+ContactsService.prototype.delete = function( contact ) {
   throw new Error( 'delete must be implemented by Class' );
 };
 ```
@@ -1281,18 +1311,18 @@ ContactService.prototype.delete = function( contact ) {
 Define Service
 
 ```
-function RestfulContactService() {
+function RestfulContactsService() {
 }
-topiarist.implements( RestfulContactService, ContactService );
-
 // implementation overrides
+
+topiarist.implements( RestfulContactsService, ContactsService );
 ```
 
 Register Service
 
 ```
 var ServiceRegistry = require( 'br/ServiceRegistry' );
-var RestfulContactService = require( 'myapp/RestfulContactService' );
+var RestfulContactsService = require( 'myapp/RestfulContactsService' );
 
 ServiceRegistry.registerService( 'contact-service',
                                  new RestfulContactService() );
@@ -1303,32 +1333,31 @@ ServiceRegistry.registerService( 'contact-service',
 
 <section data-markdown>
 <script type="text/template">
-## Using Services (cont)
-
-Access & Use Service
+## Using Services
 
 ```
 var ServiceRegistry = require( 'br/ServiceRegistry' )
 
-var contactService =
+var contactsService =
   ServiceRegistry.getService( 'contact-service' );
 
-var rimmer = contactService.search( "Arnold Judas Rimmer" );
-contactService.delete( rimmer );
+var rimmer = contactsService.search( "Arnold Judas Rimmer" );
+contactsService.delete( rimmer );
 
 var Contact = require( 'myapp/Contact' );
-contactService.save( new Contact( 'Kristine Kochanski' ) );
+contactsService.save( new Contact( 'Kristine Kochanski' ) );
 ```
 </script>
 </section>
 
-<section data-markdown>
+<section data-markdown class="emphasise-bold">
 <script type="text/template">
 ## Services enable Loose Coupled Communication
 
 * Interact with Interfaces and not implementation
 * Accessed via ServiceRegistry (no `new MyThing()`)
 * Implemenations can be swapped out
+* **Develop against a service before it's available**
 * We use this for in-app communcation too
 
 </script>
@@ -1339,8 +1368,7 @@ contactService.save( new Contact( 'Kristine Kochanski' ) );
 ## Event Hub
 
 * Communication between application components
-* e.g. Inter-Blade Communication
-* By basic PubSub message passing
+  * e.g. Inter-Blade Communication
 </script>
 </section>
 
@@ -1400,7 +1428,7 @@ EmailList.prototype._tabClicked = function( event ) {
 
 <section data-markdown>
 <script type="text/template">
-## Tooling & Libraries
+## Libraries & Tooling
 
 * BRJS Service Registery library
 * BRJS Event Hub library
@@ -1465,10 +1493,9 @@ EmailList.prototype._tabClicked = function( event ) {
 </script>
 </section>
 
-<section data-markdown >
+<section data-markdown data-online-img="https://docs.google.com/drawings/d/1zRaOTlTQ26t3n6vRRvSvo3KCtggQeP7DVpUlhFi7JD0/pub?w=1440&h=1080">
 <script type="text/template">
-* Desktop
-* Mobile 
+![](img/brjs-basic-architecture-blade-aspects-relationship.png)
 </script>
 
 <aside class="notes">
@@ -1480,6 +1507,7 @@ EmailList.prototype._tabClicked = function( event ) {
 ## Aspects
 
 * A composed view of the Blades in an Application
+* Interacting via Services e.g. EventHub
 * Example Aspects:
   * Desktop
   * Mobile
@@ -1547,8 +1575,8 @@ EmailList.prototype._tabClicked = function( event ) {
   * Dummy Service interactions -> View Model
   * Blade UI in Web Browsers in isolation -> Mocked Services
 * Enabled by App Architecture
-  * MVVM
   * Blades
+  * MVVM
   * Services
 * Some full app ATs and Manual tests
 </script>
@@ -1574,9 +1602,10 @@ EmailList.prototype._tabClicked = function( event ) {
 
 <section data-markdown>
 <script type="text/template">
-## Tooling & Libraries
+## Libraries & Tooling
 
 * BRJS
+  * Blades / Components
   * Presenter library for MVVM tests
   * ServiceRegistry for mocking services
   * BRJS CLI wraps JSTestDriver to execute tests
@@ -1604,7 +1633,7 @@ EmailList.prototype._tabClicked = function( event ) {
 
 <section data-markdown>
 <script type="text/template">
-## Tooling & Libraries enable:
+## Libraries & Tooling enable:
 
 * Coding Style
   * enforcement
@@ -1621,13 +1650,10 @@ EmailList.prototype._tabClicked = function( event ) {
 * No matter how simple individual things are
 * No matter how simple conventions are to follow (for consistency)
 * As the list of things grows, complexity will be introduced
-* Tooling & libraries are the glue to keep that complexity at bay
-  * It helps productivity by doing things for you
-  * It enforces constraints to ensure standards are met
 </aside>
 </section>
 
-<section data-markdown>
+<section data-markdown class="emphasise-bold">
 <script type="text/template">
 ## Consistency, Simplicity, Separation of Concerns
 
@@ -1635,12 +1661,17 @@ EmailList.prototype._tabClicked = function( event ) {
 * Following Principles & Practices controls
   * Complexity & Consistency
 * Divide & Conquer!
-* Tooling & Libraries are the glue that makes things easier
-* Enabing a Front-end JS App that Scales
+* Libraries & Tooling are the glue that makes things easier
+* **Enabing a Front-end JS App that Scales**
 </script>
+<aside class="notes">
+* Tooling & libraries are the glue to keep that complexity at bay
+  * It helps productivity by doing things for you
+  * It enforces constraints to ensure standards are met
+</aside>
 </section>
 
-<section data-markdown>
+<section data-markdown data-background="../img/green.jpg">
 <script type="text/template">
 ## Thanks / Questions
 
