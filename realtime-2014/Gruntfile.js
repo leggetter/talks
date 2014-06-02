@@ -1,5 +1,20 @@
 /* global module:false */
 module.exports = function(grunt) {
+
+  require( 'time-grunt' )( grunt );
+
+    // paths used in our tasks
+    var tmpFolder = '.tmp/';
+
+    // src assets
+    var srcImages = 'img/',
+        srcVideos = 'video/';
+
+    // publish location
+    var targetImages = 'images/',
+        targetVideos = 'video/';
+
+
   var port = grunt.option('port') || 8000;
   // Project configuration
   grunt.initConfig({
@@ -15,6 +30,21 @@ module.exports = function(grunt) {
         ' */'
     },
 
+    clean: {
+      tmp: [ tmpFolder + '**.*' ]
+    },
+
+    copy: {
+      projectVideos: {
+        files: [{
+          expand: true,
+          cwd: tmpFolder,
+          src: ['*.{webm,mp4}'],
+          dest: targetVideos
+        }]
+      }
+    },
+
     includereplace: {
       dist: {
         options: {
@@ -23,6 +53,45 @@ module.exports = function(grunt) {
         src: 'template.html',
         // Destination directory to copy files to
         dest: 'index.html'
+      }
+    },
+
+    responsive_videos: {
+      projectVideos:{
+        options: {
+          sizes: [{
+            width: 640,
+            poster: false
+          }],
+          encodes: [{
+            webm: [
+              {'-vcodec': 'libvpx'},
+              {'-acodec': 'libvorbis'},
+              {'-q:a': '100'},
+              {'-quality': 'good'},
+              {'-cpu-used': '0'},
+              {'-b:v': '500k'},
+              {'-qmax': '42'},
+              {'-maxrate': '500k'},
+              {'-bufsize': '1000k'},
+              {'-threads': '0'}
+            ],
+            mp4: [
+              {'-vcodec':'libx264'},
+              {'-acodec': 'libfaac'},
+              {'-pix_fmt': 'yuv420p'},
+              {'-q:v': '4'},
+              {'-q:a': '100'},
+              {'-threads': '0'}
+            ]
+          }]
+      },
+      files: [{
+          expand: true,
+          src: ['*.{mov,mp4}'],
+          cwd: srcVideos,
+          dest: tmpFolder
+      }]
       }
     },
 
@@ -132,9 +201,20 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks( 'grunt-contrib-connect' );
   grunt.loadNpmTasks( 'grunt-zip' );
   grunt.loadNpmTasks( 'grunt-include-replace' );
+  grunt.loadNpmTasks( 'grunt-responsive-videos' );
+  grunt.loadNpmTasks( 'grunt-contrib-clean' );
+  grunt.loadNpmTasks( 'grunt-contrib-copy' );
+
 
   // Default task
   grunt.registerTask( 'default', [ 'includereplace' ] );
+
+  grunt.registerTask('videos', 'Generate videos from source files in ' + srcVideos, [
+      'clean:tmp',
+      'responsive_videos:projectVideos',
+      'copy:projectVideos',
+      'clean:tmp'
+  ]);
 
   // Theme task
   grunt.registerTask( 'themes', [ 'sass' ] );
