@@ -66,7 +66,7 @@ As we progress we'll update the diagram with the building block we now have to w
 
 Note:
 - We're here to talk about realtime. Where does it fit in?
-- Realtime plays a part in all of the previous examples. But where depends on...
+- Realtime plays a part in all of the previous examples. But 'where' depends on...
 
 --
 
@@ -77,6 +77,7 @@ Is there a timely nature to the data?
 Note:
 - Is there value in getting that data quickly?
 - Does it need to maintain in-context?
+- TODO: example (potentially another slide)
 - Hashtags can indicate context after the event.
 
 --
@@ -88,6 +89,7 @@ Is there a timely nature to the experience?
 Note:
 - Anything with human-to-human interaction
 - Some interactions with systems
+- TODO: example (potentially another slide)
 
 --
 
@@ -133,7 +135,11 @@ Note:
 
 --
 
-<!-- .slide: data-background="img/plato-talkomatic.png" data-background-size="60%" -->
+<!-- .slide: data-background="img/plato-talkomatic.png" data-background-size="60%" class="dark" -->
+
+## Talkomatic
+## Realtime Chat
+## ~1973
 
 Note:
 
@@ -229,15 +235,15 @@ Cross browser "Hacks"
 
 Note:
 
-Two diagrams would be nice here
-
---
-
-# Any Client Technology
+TODO: Diagram
 
 --
 
 ![](img/internet-http-es-ws.png)
+
+--
+
+# Any Client Technology
 
 --
 
@@ -267,7 +273,7 @@ This is software - these are my opinions. You can achieve similar things in diff
   <!-- .element: class="fragment fade-in" data-fragment-index="1" -->
   <source src="video/internet-high-5-machine.mp4" type="video/mp4">
   <source src="video/internet-high-5-machine.webmhd.webm" type="video/webm">
-  <p>Please download and watch our <a href="video/internet-high-5-machine.mp4">promotional video clip</a></p>
+  <p>Please download and watch our <a href="video/internet-high-5-machine.mp4">Internet ^5 clip</a></p>
 </video>
 
 --
@@ -307,21 +313,24 @@ server.listen( 9999, '0.0.0.0' );
 
 --
 
-![](img/internet-http-es-ws-msg.png)
-
---
-
 ## Notifications & Signalling Solutions
 
-* Client/Server
+* Server/Server & Client/Server
+  * WebHooks
   * WebSocket-only or HTTP-only solutions
   * [SockJS](https://github.com/sockjs)
   * [Engine.IO](https://github.com/automattic/engine.io)
   * [Primus](https://github.com/primus/primus)
-  * You generally need an abstraction.
 * Peer-to-Peer
   * [simpleWebRTC](http://simplewebrtc.com/)
   * [PeerJS](http://peerjs.com/)
+
+Note:
+For client/server you generally need a higher abstraction.
+
+--
+
+![](img/internet-http-es-ws-msg.png)
 
 --
 
@@ -355,7 +364,6 @@ Note:
 <video class="stretch" poster="video/trader2.png" width="100%" preload="auto" controls>
   <source src="video/trader2.mp4" type="video/mp4">
   <source src="video/trader2.webm" type="video/webm">
-  <p>Please download and watch our <a href="video/internet-high-5-machine.mp4">promotional video clip</a></p>
 </video>
 
 --
@@ -378,18 +386,12 @@ channel.bind( 'time_updated', function( data ) {
 
 ```js
 var pusher = new Pusher( APP_KEY );
-var channel = pusher.subscribe( 'game-overview' );
 
 var data = { team_id = 'manchester_city',
              goals_scored: 2,
-             goal_scorer: 'Sergio Agüero'
-           };
-channel.trigger( 'goal_scored', data );
+             goal_scorer: 'Sergio Agüero' };
+pusher.trigger( 'game-overview', 'goal_scored', data );
 ```
-
---
-
-![](img/internet-http-es-ws-msg-pubsub.png)
 
 --
 
@@ -409,12 +411,18 @@ channel.trigger( 'goal_scored', data );
 
 --
 
+![](img/internet-http-es-ws-msg-pubsub.png)
+
+--
+
 # Complex Client/Server Interactions
 
 Note:
 
 - You can use PubSub for this
 - CT - initially just displaying data - now interactive.
+- Complex client/server business workflows
+- TODO: get workflow details
 
 --
 
@@ -459,15 +467,18 @@ chat.server.move( me, x, y );
 
 --
 
-![](img/internet-http-es-ws-msg-pubsub-rmi.png)
+## RMI Solutions
+
+* Self Hosted:
+  * [dNode](https://github.com/substack/dnode)
+  * [SignalR](http://www.asp.net/signalr)
+  * [Java.rmi](http://docs.oracle.com/javase/7/docs/api/java/rmi/package-summary.html)
+* Hosted:
+  * *SignalR on Windows Azure?*
 
 --
 
-## RMI Solutions
-
-* [dNode](https://github.com/substack/dnode)
-* [SignalR](http://www.asp.net/signalr)
-* [Java.rmi](http://docs.oracle.com/javase/7/docs/api/java/rmi/package-summary.html)
+![](img/internet-http-es-ws-msg-pubsub-rmi.png)
 
 --
 
@@ -479,7 +490,14 @@ chat.server.move( me, x, y );
 
 --
 
-**TODO: GIS**
+<!-- .slide: data-background="img/collaborative-mapping.png" data-background-size="100%" -->
+
+--
+
+<video class="stretch" poster="video/physical-collaborative-mapping.png" width="100%" preload="auto" controls>
+  <source src="video/physical-collaborative-mapping.mp4" type="video/mp4">
+  <source src="video/physical-collaborative-mapping.webm" type="video/webm">
+</video>
 
 --
 
@@ -488,7 +506,7 @@ chat.server.move( me, x, y );
 ```
 var myDataRef = new Firebase('https://my-app.firebaseio.com/');
 
-myDataRef.push( {name: '@leggetter', text: 'Yo from FOWA!'} );
+myDataRef.push( {creator: '@leggetter', text: 'Not a Test!'} );
 
 myDataRef.on( 'child_added', function(snapshot) {
   // Add the data
@@ -505,56 +523,24 @@ myDataRef.on( 'child_removed', function(snapshot) {
 
 --
 
+## Data Sync Solutions
+
+* Self Hosted:
+  * [DerbyJS](http://derbyjs.com/)
+  * [Meteor](http://meteor.com)
+* Hosted:
+  * [Firebase](http://firebase.com)
+  * [Google Drive Realtime API](https://developers.google.com/drive/realtime/)
+  * [GoInstant](http://goinstant.com)
+  * [Realtime.co](http://realtime.co)
+  * [Simperium](http://simperium.com)
+
+--
+
 ![](img/internet-http-es-ws-msg-pubsub-rmi-ds.png)
 
 Note:
 It's now so much easier to innovate!
-
---
-
-# It's not just Apps. It's Things!
-
---
-
-<!-- .slide: data-background="img/iot-2020.png" data-background-size="70%" -->
-
-Note:
-
-- IDC report
-- Same report: 7.7 Billion people
-
---
-
-<video class="stretch" poster="video/gangnam-thumb.png" width="100%" preload="auto" controls>
-  <source src="video/gangnam-node.mp4" type="video/mp4">
-  <source src="video/gangnam-node.webm" type="video/webm">
-  <p>Please download and watch our <a href="video/internet-high-5-machine.mp4">promotional video clip</a></p>
-</video>
-
-Note:
-- AR Drones controlled via UDP packets
-- Generally accessed via a library abstraction
-
---
-
-## IoT Platforms
-
-* [SmartThings](http://www.smartthings.com/index.php)
-* [NinjaBlocks](http://ninjablocks.com/)
-* [EvryThing](https://www.evrythng.com/)
-* [SKYNET.im](http://skynet.im)
-
---
-
-# And APIs...
-
---
-
-<!-- .slide: data-background="img/nest-thermostat.jpg" data-background-size="100%" -->
-
-Note:
-
-- Nest acquired by Google for $3.2B
 
 --
 
@@ -570,8 +556,91 @@ Note:
 
 --
 
-## Thanks
+# More "Things"!
+
+--
+
+<!-- .slide: data-background="img/iot-2020.png" data-background-size="70%" -->
+
+Note:
+
+- IDC report
+- Same report: 7.7 Billion people
+
+--
+
+<video class="stretch" poster="video/gangnam-thumb.png" width="100%" preload="auto" controls>
+  <source src="video/gangnam-node.mp4" type="video/mp4">
+  <source src="video/gangnam-node.webm" type="video/webm">
+  <p>Please download and watch our <a href="video/gangnam-node.mp4">Gangnam Nodecopter Clip</a></p>
+</video>
+
+Note:
+- AR Drones controlled via UDP packets
+- Generally accessed via a library abstraction
+
+--
+
+# And APIs...
+
+Note:
+All the IoT platforms will expose APIs
+
+--
+
+<!-- .slide: data-background="img/nest-thermostat.jpg" data-background-size="100%" -->
+
+Note:
+
+- Nest acquired by Google for $3.2B
+
+--
+
+## IoT Platforms
+
+* [SmartThings](http://www.smartthings.com/index.php)
+* [NinjaBlocks](http://ninjablocks.com/)
+* [EvryThing](https://www.evrythng.com/)
+* [SKYNET.im](http://skynet.im)
+
+--
+
+# Multi-Device
+
+Note: Multiple devices involved in the same experience
+
+--
+
+<!-- .slide: data-background="img/watch_dogs_ctos.jpg" data-background-size="100%" data-state="black-bg" class="dark" -->
+
+## Watch_Dogs
+
+Note:
+- Tablets so popular. We'll see more of this.
+
+--
+
+<video class="stretch" poster="video/ben-foxall-multi-device-web-futurejs.png" width="100%" preload="auto" controls>
+  <source src="video/ben-foxall-multi-device-web-futurejs.mp4" type="video/mp4">
+  <source src="video/ben-foxall-multi-device-web-futurejs.webm" type="video/webm">
+</video>
+
+--
+
+# Realtime Internet Apps =
+# Internet of Things =
+### Web Browsers +
+### Web Servers +
+### Native Apps +
+### Devices +
+
+--
+
+## Thanks!
+## Questions?
 
 #### Phil [@leggetter](http://www.leggetter.co.uk)
 #### &nbsp;
 #### [BladeRunnerJS](http://bladerunnerjs.org)
+#### &nbsp;
+#### http://j.mp/realtime-sotr14
