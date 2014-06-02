@@ -49,7 +49,7 @@ Note:
 
 --
 
-<!-- .slide: data-background="img/internet-communications.jpg" data-background-size="100%" class="dark" -->
+<!-- .slide: data-background="img/internet-communications.jpg" data-background-size="100%" data-state="black-bg alpha-bg" class="dark" -->
 
 ## The Internet...
 
@@ -81,10 +81,13 @@ Note:
 Is there a timely nature to the data?
 
 Note:
-- Is there value in getting that data quickly?
+- Is there a value or need to get the data quickly?
 - Does it need to maintain in-context?
-- TODO: example (potentially another slide)
 - Hashtags can indicate context after the event.
+
+--
+
+<!-- .slide: data-background="img/foursquare.jpg" data-background-size="100%" -->
 
 --
 
@@ -95,7 +98,7 @@ Is there a timely nature to the experience?
 Note:
 - Anything with human-to-human interaction
 - Some interactions with systems
-- TODO: example (potentially another slide)
+- Frustration at high latency on a voice call
 
 --
 
@@ -153,7 +156,7 @@ Talkomatic realtime Chat - created back in 1973
 
 Note:
 
-Web Chat
+Yahoo! Web chat. Looks like a Java Applet.
 
 --
 
@@ -161,7 +164,7 @@ Web Chat
 
 Note:
 
-Financial Data
+Financial Data. Also Java.
 
 --
 
@@ -182,8 +185,7 @@ So how has "the Realtime Web" and realtime web technology all of a sudden gone m
 # A Realisation & Demonstration of Value
 
 Note:
-- outside of finance and chat - okay, still plenty of chat
-
+Social Demonstrated Value:
 - Twitter
 - Facebook
 - Skype
@@ -230,22 +232,21 @@ Cross browser "Hacks"
 
 --
 
-## A Note on Connectivity
-
-* Fallbacks
-* Upgrades
-
-Note:
-
-TODO: Diagram
-
---
-
 ![](img/internet-http-es-ws.png)
 
 --
 
 # Any Client Technology
+
+Note:
+Protocol + API specs = Any tech can implement.
+
+--
+
+![](img/connection-strategies.png)
+
+Note:
+A note on connection strategies with these technologies
 
 --
 
@@ -284,6 +285,10 @@ This is software - these are my opinions. You can achieve similar things in diff
 
 ## talky.io
 
+Note:
+- Uses WebRTC for audio & video
+- Needs a signal to help the two peers know about each other
+
 --
 
 **Receive message**
@@ -315,10 +320,11 @@ server.listen( 9999, '0.0.0.0' );
 
 --
 
-## Notifications & Signalling Solutions
+## Simple Messaging Solutions
 
-* Server/Server & Client/Server
+* Server/Server
   * WebHooks
+* Client/Server
   * WebSocket-only or HTTP-only solutions
   * [SockJS](https://github.com/sockjs)
   * [Engine.IO](https://github.com/automattic/engine.io)
@@ -355,11 +361,9 @@ Note:
 
 - Overview data about the score, scorers, location and time played
 - Timeline information about key events
-- Activity Stream: commentary
-- Textual key moments
-- A social stream
-- Photos
+- Activity Streams
 - An overview of the status of the starting 11 players
+- PubSub: channels/topics/subjects
 
 --
 
@@ -367,6 +371,10 @@ Note:
   <source src="video/trader2.mp4" type="video/mp4">
   <source src="video/trader2.webm" type="video/webm">
 </video>
+
+Note:
+- Subscribe to what's visible
+- Sub/Unsub as required
 
 --
 
@@ -424,18 +432,29 @@ Note:
 - You can use PubSub for this
 - CT - initially just displaying data - now interactive.
 - Complex client/server business workflows
-- TODO: get workflow details
 
 --
 
 <!-- .slide: data-background="img/fx-motif.png" data-background-size="100%" -->
 
 Note:
-Why does RMI suit this?
+- Open a trade
+- Get open ack
+- Wait for it to become executable
+- You can withdraw/it can expire, or you can execute
+- Trade is then confirmed
+- Confirm ack / expired
+- Easier to be calling methods on objects? RMI
+- What is RMI?
 
 --
 
 <!-- .slide: data-background="img/shooter.png" data-background-size="100%" -->
+
+Note:
+- Game state authority
+- Complex rich symantic interactions
+- May be better suited to RMI?
 
 --
 
@@ -463,7 +482,7 @@ game.client.playerMoved = function (player, x, y) {
   // update game
 };
 
-chat.server.move( me, x, y );
+game.server.move( me, x, y );
 ```
 <!-- .element: class="hljs javascript" -->
 
@@ -489,6 +508,11 @@ chat.server.move( me, x, y );
 --
 
 <!-- .slide: data-background="img/gdocs-collaboration.png" data-background-size="100%" -->
+
+Note:
+- Any use case where you're working on a data structure
+- Agile PM boards is common use case
+- Online Code Editors
 
 --
 
@@ -549,9 +573,15 @@ It's now so much easier to innovate!
 
 --
 
-## Which Solution?
+# Choosing a Solution
 
-** TODO: image**
+--
+
+![](img/rtw-tech-decision-matrix.png)
+
+--
+
+![](img/rtw-tech-decision-matrix-solutions.png)
 
 --
 
@@ -577,6 +607,8 @@ Note:
 
 - IDC report
 - Same report: 7.7 Billion people
+- What connected?
+- Homes, cars, kids, drones
 
 --
 
@@ -587,15 +619,15 @@ Note:
 </video>
 
 Note:
+- Most common use case for IoT right now!
+- BBC use drone for video.
+- Lots of use in agriculture
 - AR Drones controlled via UDP packets
 - Generally accessed via a library abstraction
 
 --
 
 # And APIs...
-
-Note:
-All the IoT platforms will expose APIs
 
 --
 
@@ -616,9 +648,10 @@ Note:
 
 --
 
-# Multi-Device
+# Multi-Device Experiences
 
-Note: Multiple devices involved in the same experience
+Note:
+Multiple devices involved in the same experience
 
 --
 
@@ -627,6 +660,8 @@ Note: Multiple devices involved in the same experience
 ## Watch_Dogs
 
 Note:
+- Not mentioned 2nd screen experiences.
+- But this is more than that. This is true engagement.
 - Tablets so popular. We'll see more of this.
 
 --
@@ -635,6 +670,11 @@ Note:
   <source src="video/640/ben-foxall-multi-device-web-futurejs-640.mp4" type="video/mp4">
   <source src="video/640/ben-foxall-multi-device-web-futurejs-640.webm" type="video/webm">
 </video>
+
+Note:
+- We confine ourselves to thinking in the singular.
+- What if we think in multiples?
+- What sort of experiences and uses would that result in?
 
 --
 
