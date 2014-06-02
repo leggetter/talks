@@ -5,6 +5,11 @@
 #### &nbsp;
 #### [BladeRunnerJS](http://bladerunnerjs.org)
 
+Note:
+- Who uses realtime web technology in their apps?
+- Do: some new ideas or ways to think about the technology
+- Don't: convince you that you should
+
 --
 
 ## Realtime Web Apps
@@ -39,11 +44,12 @@
 
 Note:
 
-What are the main (work safe) uses for the Internet each day?
-
-<small>† 41.5 million posts in April = 1.38 million per day. Assuming WordPress.com have 20% of the market; 1.38 * 5 = 6.9 million posts on all blogging platforms.</small>
+- What are the main (work safe) uses for the Internet each day?
+- † 41.5 million posts in April = 1.38 million per day. Assuming WordPress.com have 20% of the market; 1.38 * 5 = 6.9 million posts on all blogging platforms.
 
 --
+
+<!-- .slide: data-background="img/internet-communications.jpg" data-background-size="100%" class="dark" -->
 
 ## The Internet...
 
@@ -136,10 +142,6 @@ Note:
 --
 
 <!-- .slide: data-background="img/plato-talkomatic.png" data-background-size="60%" class="dark" -->
-
-## Talkomatic
-## Realtime Chat
-## ~1973
 
 Note:
 
@@ -269,11 +271,11 @@ This is software - these are my opinions. You can achieve similar things in diff
 ## Internet ^5 Machine
 <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
 
-<video class="stretch" poster="video/internet-high-5-machine.webmhd.png" width="100%" preload="auto" controls>
+<video class="stretch" poster="video/internet-high-5-machine.png" width="100%" preload="auto" controls>
   <!-- .element: class="fragment fade-in" data-fragment-index="1" -->
-  <source src="video/internet-high-5-machine.mp4" type="video/mp4">
-  <source src="video/internet-high-5-machine.webmhd.webm" type="video/webm">
-  <p>Please download and watch our <a href="video/internet-high-5-machine.mp4">Internet ^5 clip</a></p>
+  <source src="video/640/internet-high-5-machine-640.mp4" type="video/mp4">
+  <source src="video/640/internet-high-5-machine-640.webm" type="video/webm">
+  <p>Please download and watch our <a href="video/640/internet-high-5-machine-640.mp4">Internet ^5 clip</a></p>
 </video>
 
 --
@@ -495,9 +497,12 @@ chat.server.move( me, x, y );
 --
 
 <video class="stretch" poster="video/physical-collaborative-mapping.png" width="100%" preload="auto" controls>
-  <source src="video/physical-collaborative-mapping.mp4" type="video/mp4">
-  <source src="video/physical-collaborative-mapping.webm" type="video/webm">
+  <source src="video/640/physical-collaborative-mapping-640.mp4" type="video/mp4">
+  <source src="video/640/physical-collaborative-mapping-640.webm" type="video/webm">
 </video>
+
+Note:
+- Large organisations are looking into creating realtime emergency centres
 
 --
 
@@ -544,6 +549,12 @@ It's now so much easier to innovate!
 
 --
 
+## Which Solution?
+
+** TODO: image**
+
+--
+
 # Beyond
 
 --
@@ -570,9 +581,9 @@ Note:
 --
 
 <video class="stretch" poster="video/gangnam-thumb.png" width="100%" preload="auto" controls>
-  <source src="video/gangnam-node.mp4" type="video/mp4">
-  <source src="video/gangnam-node.webm" type="video/webm">
-  <p>Please download and watch our <a href="video/gangnam-node.mp4">Gangnam Nodecopter Clip</a></p>
+  <source src="video/640/gangnam-node-640.mp4" type="video/mp4">
+  <source src="video/640/gangnam-node-640.webm" type="video/webm">
+  <p>Please download and watch our <a href="video/640gangnam-node-640.mp4">Gangnam Nodecopter Clip</a></p>
 </video>
 
 Note:
@@ -621,8 +632,8 @@ Note:
 --
 
 <video class="stretch" poster="video/ben-foxall-multi-device-web-futurejs.png" width="100%" preload="auto" controls>
-  <source src="video/ben-foxall-multi-device-web-futurejs.mp4" type="video/mp4">
-  <source src="video/ben-foxall-multi-device-web-futurejs.webm" type="video/webm">
+  <source src="video/640/ben-foxall-multi-device-web-futurejs-640.mp4" type="video/mp4">
+  <source src="video/640/ben-foxall-multi-device-web-futurejs-640.webm" type="video/webm">
 </video>
 
 --
