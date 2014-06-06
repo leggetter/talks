@@ -2,13 +2,19 @@
 ## In 2014 & Beyond
 
 #### Phil [@leggetter](http://www.leggetter.co.uk)
-#### &nbsp;
-#### [BladeRunnerJS](http://bladerunnerjs.org)
 
 Note:
 - Who uses realtime web technology in their apps?
 - Do: some new ideas or ways to think about the technology
 - Don't: convince you that you should
+
+--
+
+![](img/brjs-homepage.png)
+
+--
+
+![](img/caplin-noir.png)
 
 --
 
@@ -279,6 +285,12 @@ This is software - these are my opinions. You can achieve similar things in diff
   <p>Please download and watch our <a href="video/640/internet-high-5-machine-640.mp4">Internet ^5 clip</a></p>
 </video>
 
+<br />
+<!-- .element: class="fragment" data-state="play-video" -->
+
+Note:
+Russell Thomas and Syd Lawrence
+
 --
 
 <!-- .slide: data-background="img/talkyio-laptop.png" data-background-size="100%" class="dark" -->
@@ -371,6 +383,9 @@ Note:
   <source src="video/trader2.mp4" type="video/mp4">
   <source src="video/trader2.webm" type="video/webm">
 </video>
+
+<br />
+<!-- .element: class="fragment" data-state="play-video" -->
 
 Note:
 - Subscribe to what's visible
@@ -520,10 +535,15 @@ Note:
 
 --
 
+## Physical Collaborative Mapping
+
 <video class="stretch" poster="video/physical-collaborative-mapping.png" width="100%" preload="auto" controls>
   <source src="video/640/physical-collaborative-mapping-640.mp4" type="video/mp4">
   <source src="video/640/physical-collaborative-mapping-640.webm" type="video/webm">
 </video>
+
+<br />
+<!-- .element: class="fragment" data-state="play-video" -->
 
 Note:
 - Large organisations are looking into creating realtime emergency centres
@@ -557,6 +577,7 @@ myDataRef.on( 'child_removed', function(snapshot) {
 * Self Hosted:
   * [DerbyJS](http://derbyjs.com/)
   * [Meteor](http://meteor.com)
+  * [CouchDB]() + [pouchdb](http://pouchdb.com/)
 * Hosted:
   * [Firebase](http://firebase.com)
   * [Google Drive Realtime API](https://developers.google.com/drive/realtime/)
@@ -618,6 +639,9 @@ Note:
   <p>Please download and watch our <a href="video/640gangnam-node-640.mp4">Gangnam Nodecopter Clip</a></p>
 </video>
 
+<br />
+<!-- .element: class="fragment" data-state="play-video" -->
+
 Note:
 - Most common use case for IoT right now!
 - BBC use drone for video.
@@ -628,6 +652,19 @@ Note:
 --
 
 # And APIs...
+
+--
+
+* Use Realtime
+  * Twilio
+  * SendGrid
+  * MailChimp
+  * Iron.io
+  * GitHub
+  * Trello
+  * ...
+* APIs for APIs
+  * Fanout.io
 
 --
 
@@ -645,6 +682,22 @@ Note:
 * [NinjaBlocks](http://ninjablocks.com/)
 * [EvryThing](https://www.evrythng.com/)
 * [SKYNET.im](http://skynet.im)
+
+--
+
+![](img/andy-piper.jpg)
+
+--
+
+## MQTT
+
+<blockquote>
+MQTT is a machine-to-machine (M2M)/"Internet of Things" connectivity protocol.
+</blockquote>
+
+* [MQTT](http://mqtt.org/)
+* [HiveMQ](http://www.hivemq.com/)
+* [Eclipse Paho](http://eclipse.org/paho/)
 
 --
 
@@ -671,6 +724,9 @@ Note:
   <source src="video/640/ben-foxall-multi-device-web-futurejs-640.webm" type="video/webm">
 </video>
 
+<br />
+<!-- .element: class="fragment" data-state="play-video" -->
+
 Note:
 - We confine ourselves to thinking in the singular.
 - What if we think in multiples?
@@ -687,11 +743,17 @@ Note:
 
 --
 
-## Thanks!
-## Questions?
+<div style="position: absolute; top: 0; left: 0; width: 70%;">
+  <h1>Thanks!</h1>
+  <h1>Questions?</h1>
+  <br />
+  <h4 style="margin-bottom: 10px;">Phil [@leggetter](http://www.leggetter.co.uk)</h4>
+  <h4><a href="http://bladerunnerjs.org">BladeRunnerJS</a></h4>
+  <br />
+  <h4 style="margin-bottom: 10px;"><a href="http://j.mp/realtime-sotr14">j.mp/realtime-sotr14</a></h4>
+  <h4><a href="http://j.mp/realtime-tech-guide">j.mp/realtime-tech-guide</a></h4>
+</div>
 
-#### Phil [@leggetter](http://www.leggetter.co.uk)
-#### &nbsp;
-#### [BladeRunnerJS](http://bladerunnerjs.org)
-#### &nbsp;
-#### http://j.mp/realtime-sotr14
+<div style="position: absolute; top: 0; right: 0; width: 30%">
+  <img src="img/realtime-web-apps.jpg" />
+</div>
