@@ -278,15 +278,12 @@ This is software - these are my opinions. You can achieve similar things in diff
 ## Internet ^5 Machine
 <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
 
-<video class="stretch" poster="video/internet-high-5-machine.png" width="100%" preload="auto" controls>
+<video  poster="video/internet-high-5-machine.png" width="90%" preload="metadata" controls>
   <!-- .element: class="fragment fade-in" data-fragment-index="1" -->
   <source src="video/640/internet-high-5-machine-640.mp4" type="video/mp4">
   <source src="video/640/internet-high-5-machine-640.webm" type="video/webm">
   <p>Please download and watch our <a href="video/640/internet-high-5-machine-640.mp4">Internet ^5 clip</a></p>
 </video>
-
-<br />
-<!-- .element: class="fragment" data-state="play-video" -->
 
 Note:
 Russell Thomas and Syd Lawrence
@@ -379,13 +376,10 @@ Note:
 
 --
 
-<video class="stretch" poster="video/trader2.png" width="100%" preload="auto" controls>
+<video  poster="video/trader2.png" width="90%" preload="metadata" controls>
   <source src="video/trader2.mp4" type="video/mp4">
   <source src="video/trader2.webm" type="video/webm">
 </video>
-
-<br />
-<!-- .element: class="fragment" data-state="play-video" -->
 
 Note:
 - Subscribe to what's visible
@@ -537,13 +531,10 @@ Note:
 
 ## Physical Collaborative Mapping
 
-<video class="stretch" poster="video/physical-collaborative-mapping.png" width="100%" preload="auto" controls>
+<video  poster="video/physical-collaborative-mapping.png" width="90%" preload="metadata" controls>
   <source src="video/640/physical-collaborative-mapping-640.mp4" type="video/mp4">
   <source src="video/640/physical-collaborative-mapping-640.webm" type="video/webm">
 </video>
-
-<br />
-<!-- .element: class="fragment" data-state="play-video" -->
 
 Note:
 - Large organisations are looking into creating realtime emergency centres
@@ -633,14 +624,11 @@ Note:
 
 --
 
-<video class="stretch" poster="video/gangnam-thumb.png" width="100%" preload="auto" controls>
+<video  poster="video/gangnam-thumb.png" width="90%" preload="metadata" controls>
   <source src="video/640/gangnam-node-640.mp4" type="video/mp4">
   <source src="video/640/gangnam-node-640.webm" type="video/webm">
   <p>Please download and watch our <a href="video/640gangnam-node-640.mp4">Gangnam Nodecopter Clip</a></p>
 </video>
-
-<br />
-<!-- .element: class="fragment" data-state="play-video" -->
 
 Note:
 - Most common use case for IoT right now!
@@ -719,13 +707,10 @@ Note:
 
 --
 
-<video class="stretch" poster="video/ben-foxall-multi-device-web-futurejs.png" width="100%" preload="auto" controls>
+<video  poster="video/ben-foxall-multi-device-web-futurejs.png" width="90%" preload="metadata" controls>
   <source src="video/640/ben-foxall-multi-device-web-futurejs-640.mp4" type="video/mp4">
   <source src="video/640/ben-foxall-multi-device-web-futurejs-640.webm" type="video/webm">
 </video>
-
-<br />
-<!-- .element: class="fragment" data-state="play-video" -->
 
 Note:
 - We confine ourselves to thinking in the singular.
