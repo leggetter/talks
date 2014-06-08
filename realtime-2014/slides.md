@@ -278,7 +278,7 @@ This is software - these are my opinions. You can achieve similar things in diff
 ## Internet ^5 Machine
 <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
 
-<video  poster="video/internet-high-5-machine.png" width="90%" preload="metadata" controls>
+<video  poster="video/internet-high-5-machine.png" width="90%" preload="none" controls>
   <!-- .element: class="fragment fade-in" data-fragment-index="1" -->
   <source src="video/640/internet-high-5-machine-640.mp4" type="video/mp4">
   <source src="video/640/internet-high-5-machine-640.webm" type="video/webm">
@@ -376,7 +376,7 @@ Note:
 
 --
 
-<video  poster="video/trader2.png" width="90%" preload="metadata" controls>
+<video  poster="video/trader2.png" width="90%" preload="none" controls>
   <source src="video/trader2.mp4" type="video/mp4">
   <source src="video/trader2.webm" type="video/webm">
 </video>
@@ -531,7 +531,7 @@ Note:
 
 ## Physical Collaborative Mapping
 
-<video  poster="video/physical-collaborative-mapping.png" width="90%" preload="metadata" controls>
+<video  poster="video/physical-collaborative-mapping.png" width="90%" preload="none" controls>
   <source src="video/640/physical-collaborative-mapping-640.mp4" type="video/mp4">
   <source src="video/640/physical-collaborative-mapping-640.webm" type="video/webm">
 </video>
@@ -624,7 +624,7 @@ Note:
 
 --
 
-<video  poster="video/gangnam-thumb.png" width="90%" preload="metadata" controls>
+<video  poster="video/gangnam-thumb.png" width="90%" preload="none" controls>
   <source src="video/640/gangnam-node-640.mp4" type="video/mp4">
   <source src="video/640/gangnam-node-640.webm" type="video/webm">
   <p>Please download and watch our <a href="video/640gangnam-node-640.mp4">Gangnam Nodecopter Clip</a></p>
@@ -707,7 +707,7 @@ Note:
 
 --
 
-<video  poster="video/ben-foxall-multi-device-web-futurejs.png" width="90%" preload="metadata" controls>
+<video  poster="video/ben-foxall-multi-device-web-futurejs.png" width="90%" preload="none" controls>
   <source src="video/640/ben-foxall-multi-device-web-futurejs-640.mp4" type="video/mp4">
   <source src="video/640/ben-foxall-multi-device-web-futurejs-640.webm" type="video/webm">
 </video>
