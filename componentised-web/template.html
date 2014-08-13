@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>The State of the Componentised Web</title>
+
+    <meta name="description" content="The State of the Componentised Web">
+    <meta name="author" content="Phil Leggetter">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/github.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style type="text/css">
+
+      html.black-bg body {
+        background-color: #000;
+      }
+
+      html.alpha-bg .state-background {
+        /* Fallback for web browsers that don't support RGBa */
+        background-color: rgb(0, 0, 0);
+        /* RGBa with 0.8 opacity */
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .reveal pre code {
+        max-height: none;
+        font-size: 75%;
+        line-height: 1.4em;
+      }
+
+      .reveal .slides section h1 {
+        line-height: 1.2em !important;
+      }
+
+      .reveal .slides section .fragment.fade-out.visible {
+        display: none;
+      }
+
+      .reveal .slides section.dark,
+      .reveal .slides section.dark h1,
+      .reveal .slides section.dark h2 {
+        color: #fff !important;
+        text-shadow: 2px 2px 2px #000;
+      }
+
+      @media (max-width: 1024px) {
+        .reveal pre code {
+          font-size: 55%;
+          max-height: none;
+          line-height: 128%;
+        }
+      }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+<section data-markdown
+ data-separator="^\n--\n$"
+ data-vertical="^\n\n\n"
+ data-notes="^Note:"
+ data-charset="iso-8859-15">
+
+@@include('slides.md')
+
+</section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="lib/js/classList.js"></script>
+    <script src="plugin/markdown/marked.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom-js/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        width: '90%',
+        height: '90%',
+        margin: 0,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear' // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        // dependencies: [
+        // 	{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        // 	{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        // 	{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        // 	{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        // 	{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+        // 	{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        // ]
+      });
+
+      Reveal.addEventListener( 'ready', function() {
+        hljs.initHighlightingOnLoad();
+      } );
+
+      Reveal.addEventListener( 'ready', addNotesToConsole );
+      Reveal.addEventListener( 'ready', updateJSBinHeight );
+      Reveal.addEventListener( 'slidechanged', addNotesToConsole );
+      Reveal.addEventListener( 'slidechanged', updateJSBinHeight );
+
+      function addNotesToConsole( event ) {
+        // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+
+        if( event.previousSlide ) {
+          console.clear();
+        }
+
+        var notes = event.currentSlide.querySelector(".notes");
+        if(notes) {
+          console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
+        }
+      }
+
+      function updateJSBinHeight( event, attempts ) {
+        attempts = attempts || 0;
+
+        console.log( event.currentSlide );
+        var link = event.currentSlide.querySelector( 'a.jsbin-embed' );
+        var iframe = event.currentSlide.querySelector( 'iframe.jsbin-embed' );
+        if( link && attempts < 5 ) {
+          ++attempts;
+          setTimeout( function() {
+            updateJSBinHeight( event, attempts );
+          }, 5000 );
+        }
+        else if( iframe ) {
+          var availHeight = document.body.clientHeight;
+          iframe.style.height = Math.round( availHeight * 0.7 ) + 'px';
+
+          Reveal.layout();
+        }
+        else {
+          // either failed to find any jsbin things
+          // or all attempts failed.
+        }
+      }
+
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-513034-22', 'leggetter.github.io');
+      ga('send', 'pageview');
+
+    </script>
+
+    <script src="http://static.jsbin.com/js/embed.js"></script>
+
+  </body>
+</html>
