@@ -13,7 +13,7 @@ Note:
 
 --
 
-![](img/brjs-homepage.png)
+<!-- .slide: data-background="img/brjs-homepage.png" data-background-size="100%" class="dark" -->
 
 --
 
@@ -69,9 +69,13 @@ Note:
 
 ### Modular
 
-<blockquote>Conceptually, modules represent a <strong>separation of concerns</strong>, and improve <strong>maintainability</strong> by enforcing <strong>logical boundaries</strong> between components. Modules are typically incorporated into the program through <strong>interfaces</strong>... The <strong>implementation</strong> contains the working code that corresponds to the elements declared in the interface.</blockquote>
+* Separation of Concerns
+* Encapsulation
+* Information Hiding
+* A defined interface/contract/API
+* Improved maintenance
 
-<small>Source: <a href="http://en.wikipedia.org/wiki/Modular_programming">en.wikipedia.org/wiki/Modular_programming</a></small>
+![](img/buzzword-bingo.jpg)
 
 Note:
 
@@ -84,6 +88,7 @@ Note:
 ### High Cohesion
 
 <blockquote>the degree to which the elements of a module belong together</blockquote>
+<blockquote>a measure of how strongly related each piece of functionality expressed by the source code of a software module is</blockquote>
 <small>Source: <a href="http://en.wikipedia.org/wiki/Cohesion_(computer_science)">en.wikipedia.org/wiki/Cohesion_(computer_science)</a></small>
 
 Note:
@@ -221,11 +226,22 @@ Note:
 
 --
 
+### X-Tag & Brick
+
+<a class="jsbin-embed" href="http://jsbin.com/wexiz/2/embed?html,output">JS Bin</a>
+
+Note:
+
+- X-Tag - similar to Platform.js
+- Brick - a set of components to build apps with
+
+--
+
 ## Other Polyfills
 
 * [bosonic](http://bosonic.github.io/)
 * [W3C Custom Elements Polyfil](https://github.com/WebReflection/document-register-element#document-register-element)
-* [X-Tag](https://github.com/x-tag/x-tag) <small>(includes some other "core" components)</small>
+* [X-Tag](https://github.com/x-tag/x-tag) <small>includes some other "core" components</small>
 
 --
 
@@ -236,17 +252,6 @@ Note:
 ### Polymer - Example
 
 <a class="jsbin-embed" href="http://jsbin.com/gukoku/2/embed?html,output">JS Bin</a>
-
---
-
-### X-Tag & Brick
-
-<a class="jsbin-embed" href="http://jsbin.com/wexiz/2/embed?html,output">JS Bin</a>
-
-Note:
-
-- X-Tag - similar to Platform.js
-- Brick - a set of components to build apps with
 
 --
 
@@ -284,17 +289,11 @@ Note:
 * Components = Benefits
 * Existing libs/frameworks - Components
 * Native Web Components = Future
-* Build new libs/frameworks on new foundation
 * Existing libs/frameworks will align
+* Build new libs/frameworks on new foundation
 
 
 Note:
-
-There are lots of benefits to building applications with component-based architectures and you can tell from the approach that existing frameworks have taken and from Web Components that it's recommended when building front-end web apps.
-
-This whirlwind tour of the State of the Componentised Web has likely added to the weight of choice we developers already have when it comes to frameworks and tooling. But, Web Components may be the light at the end of the tunnel!
-
-Web Components will provide a native and unified way of building applications. Existing frameworks will likely move to use Web Components or demonstrate how they can be used alongside them. Ember's strategy is to make it easy to migrate to Web Components and Facebook's React is a good example of where integration is most likely - there's already a ReactiveElements that demonstrates this. Since Angular and Polymer are Google projects it's also highly likely that these two projects will align.
 
 --
 
