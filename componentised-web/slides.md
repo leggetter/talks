@@ -13,6 +13,12 @@ Note:
 
 --
 
+![](img/brjs-homepage.png)
+
+--
+
+<!-- .slide: data-background="img/electronic-components.jpg" data-background-size="100%" data-state="black-bg alpha-bg" class="dark" -->
+
 ## What are Components?
 
 * Smaller piece of a larger app
@@ -54,6 +60,8 @@ Note:
 * Chat Service
 
 --
+
+<!-- .slide: data-background="img/question-mark.jpg" data-background-size="100%" data-state="black-bg alpha-bg" class="dark" -->
 
 ## Why Build Components?
 
@@ -103,8 +111,13 @@ Note:
 
 --
 
-### Reusable
-#### A word of warning
+<!-- .slide: data-background="img/warning.png" data-background-size="100%" data-state="black-bg alpha-bg" class="dark" -->
+
+### Don't over-engineer to achieve reusability
+
+Note:
+
+Don't focus too much on trying to build reusable components. Focus on building the required piece of functionality for your application, which may be very specific. Then, if the need arises, or it becomes very clear that the component is reusable, put in the extra effort to make the component reusable. As developers love to create reusable functionality (libraries, components, modules, plugins etc.). Doing so prematurely can result in a world of pain. So, take all the other benefits of component-based development and accept that not everything you write can be 100% reusable.
 
 --
 
@@ -112,21 +125,44 @@ Note:
 
 * Same interface/contract
 * Same functionality
-* Easily swap
+* Swap easily
+
+Note:
+
+A nice and focused component API presents the opportunity to be able to easily change the underlying implementation. Or, if the components within the application are loosely coupled you can actually completely swap one component for another as long as they offer the same API/interface/contract.
+
+For example, if you were to use a service component that offered realtime functionality via GoInstant, the news this week that they're closing down would probably be a bit of shock. However, you could quite feasibly create and use a FirebaseComponent or PubNubComponent as long as they offer the same data synchronisation-focused API.
 
 --
 
-### Composable
+#### Composable
+
+![](img/gmail-components-composed.png)
+
+Note:
+
+As previously discussed, a component-based architecture makes it easy for one component to be composed of a number of other components. This allows the component to stay focused and benefit from reusing functionality already build and exposed in other components.
+
+More complex functionality can be built in this way; from richer application features to full applications. It's one of the main benefits of this approach.
+
+Whether absolutely everything should be a component is really up to you. There's no reason why your application can't be a my-app component which is then composed of my-awesome-feature and my-fabulous-features. And those components are then in turn composed of other components. If you see benefits from this approach then by all means stick with it. However, be careful not to over complicate things in the same way that you shouldn't focus too hard on making a component reusable. Focus on delivering application functionality.
 
 --
 
-## Building Components Now
+### Building Components Now
+
+![](img/todomvc.png)
+
+Note:
+
+- Some libraries/frameworks provide in-build component support
+- Demonstrate building components using most popular
 
 --
 
-## Example
+## `my-avatar` Component Example
 
-```js
+```html
   <my-avatar service="twitter" username="leggetter" />
 ```
 
@@ -160,6 +196,8 @@ Note:
 ## The Future:
 ## Web Components & Beyond
 
+![](img/webcomponents-logo.svg)
+
 --
 
 * Custom Elements
@@ -169,20 +207,33 @@ Note:
 
 --
 
+![](img/webcomponents-support-2014.png)
+
+--
+
+![](img/webcomponents-support-polyfills-2014.png)
+
+--
+
 ### Platform.js
 
 <a class="jsbin-embed" href="http://jsbin.com/pihuz/4/embed?html,output">JS Bin</a>
 
 --
 
-## Other Polyfils
+## Other Polyfills
 
 * [bosonic](http://bosonic.github.io/)
 * [W3C Custom Elements Polyfil](https://github.com/WebReflection/document-register-element#document-register-element)
+* [X-Tag](https://github.com/x-tag/x-tag) <small>(includes some other "core" components)</small>
 
 --
 
-### Polymer
+![](img/polymer.png)
+
+--
+
+### Polymer - Example
 
 <a class="jsbin-embed" href="http://jsbin.com/gukoku/2/embed?html,output">JS Bin</a>
 
@@ -192,13 +243,58 @@ Note:
 
 <a class="jsbin-embed" href="http://jsbin.com/wexiz/2/embed?html,output">JS Bin</a>
 
+Note:
+
+- X-Tag - similar to Platform.js
+- Brick - a set of components to build apps with
+
 --
 
 ## Component Inter-Communication
 
+##### ComponentX
+
+```js
+var ServiceRegistry = require( 'br/ServiceRegistry' )
+var eventHub = ServiceRegistry.getService( 'br.event-hub' );
+eventHub.channel( 'foo' ).trigger( 'bar', { some: 'data' } );
+```
+##### ComponentY
+
+```js
+var ServiceRegistry = require( 'br/ServiceRegistry' )
+var eventHub = ServiceRegistry.getService( 'br.event-hub' );
+eventHub.channel( 'foo' ).bind( 'bar', function( data ) {
+  // handle event
+}, this );
+```
+
+Note:
+
+- "independent" and "modular" how do they communicate?
+- directly reference each other and interact via their API?!
+- loose coupling where components have little or no knowledge of each other
+- Use services
+- Angular and Ember use services & DI
+
 --
 
 ## Conclusion
+
+* Components = Benefits
+* Existing libs/frameworks - Components
+* Native Web Components = Future
+* Build new libs/frameworks on new foundation
+* Existing libs/frameworks will align
+
+
+Note:
+
+There are lots of benefits to building applications with component-based architectures and you can tell from the approach that existing frameworks have taken and from Web Components that it's recommended when building front-end web apps.
+
+This whirlwind tour of the State of the Componentised Web has likely added to the weight of choice we developers already have when it comes to frameworks and tooling. But, Web Components may be the light at the end of the tunnel!
+
+Web Components will provide a native and unified way of building applications. Existing frameworks will likely move to use Web Components or demonstrate how they can be used alongside them. Ember's strategy is to make it easy to migrate to Web Components and Facebook's React is a good example of where integration is most likely - there's already a ReactiveElements that demonstrates this. Since Angular and Polymer are Google projects it's also highly likely that these two projects will align.
 
 --
 
