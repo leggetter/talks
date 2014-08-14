@@ -79,8 +79,10 @@ Note:
 
 Note:
 
+- Component -> Modular: magical properties
 - Semantic overload again!
 - Modules, components, widgets etc.
+- Encapsulation: packing of data & functions into a single component
 - Components ~= Modules
 
 --
@@ -134,9 +136,9 @@ Don't focus too much on trying to build reusable components. Focus on building t
 
 Note:
 
-A nice and focused component API presents the opportunity to be able to easily change the underlying implementation. Or, if the components within the application are loosely coupled you can actually completely swap one component for another as long as they offer the same API/interface/contract.
-
-For example, if you were to use a service component that offered realtime functionality via GoInstant, the news this week that they're closing down would probably be a bit of shock. However, you could quite feasibly create and use a FirebaseComponent or PubNubComponent as long as they offer the same data synchronisation-focused API.
+- focused component API presents the opportunity to be able to easily change the underlying implementation
+- If loosely coupled you can actually completely swap one component for another
+- service component that offered realtime functionality via GoInstant
 
 --
 
@@ -146,11 +148,11 @@ For example, if you were to use a service component that offered realtime functi
 
 Note:
 
-As previously discussed, a component-based architecture makes it easy for one component to be composed of a number of other components. This allows the component to stay focused and benefit from reusing functionality already build and exposed in other components.
-
-More complex functionality can be built in this way; from richer application features to full applications. It's one of the main benefits of this approach.
-
-Whether absolutely everything should be a component is really up to you. There's no reason why your application can't be a my-app component which is then composed of my-awesome-feature and my-fabulous-features. And those components are then in turn composed of other components. If you see benefits from this approach then by all means stick with it. However, be careful not to over complicate things in the same way that you shouldn't focus too hard on making a component reusable. Focus on delivering application functionality.
+- easy for one component to be composed of a number of other components
+- component to stay focused
+- reusing functionality already in other components
+- More complex functionality can be built in this way
+- Is `my-app` a component?
 
 --
 
