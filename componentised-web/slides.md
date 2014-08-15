@@ -67,6 +67,8 @@ Note:
 
 --
 
+<!-- .slide: data-background="img/unicorn-module.jpg" data-background-size="50%" data-state="black-bg alpha-bg" class="dark" -->
+
 ### Modular
 
 * Separation of Concerns
@@ -74,8 +76,6 @@ Note:
 * Information Hiding
 * A defined interface/contract/API
 * Improved maintenance
-
-![](img/buzzword-bingo.jpg)
 
 Note:
 
@@ -259,6 +259,12 @@ Note:
 
 ## Component Inter-Communication
 
+<img src="img/message-bus.png" width="800px" />
+
+--
+
+## Component Inter-Communication
+
 ##### ComponentX
 
 ```js
@@ -283,6 +289,7 @@ Note:
 - loose coupling where components have little or no knowledge of each other
 - Use services
 - Angular and Ember use services & DI
+- `document.registerElement` - native DI?
 
 --
 
